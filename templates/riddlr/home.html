@@ -1,5 +1,11 @@
-{% extends 'riddlr/base.html' %} {% load staticfiles %} {% block title_block %} Homepage {% endblock %} {% block body_block
-%}
+{% extends 'riddlr/base.html' %}
+{% load staticfiles %}
+
+{% block title_block %}
+Homepage
+{% endblock %}
+
+{% block body_block %}
 <h1>Riddle me this...</h1>
 <div>
     {% if user.is_authenticated %} Welcome back {{ user.username }}! {% else %} Welcome new riddlr {% endif %}
