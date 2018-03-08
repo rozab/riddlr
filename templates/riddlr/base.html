@@ -4,46 +4,42 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8" />
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>
-        Riddlr - {% block title_block %} How to Riddle with Riddlr! {% endblock %}
+        {% block title_block %}riddlr{% endblock %}
     </title>
 </head>
 
 <body>
-    <div>
-        <ul>
-            <li>
-                <a href="{% url 'home' %}">Homepage | </a>
-                <a href="{% url 'top_riddles' %}">Top Riddles | </a>
-                <a href="{% url 'recent_riddles' %}">Recent Riddles | </a>
-                <a href="{% url 'about' %}">About</a>
-                <a href="{% url 'add_riddle' %}">Add a New Riddle</a>
-            </li>
+    <div class="box">
+        <div id="logo">riddlr</div>
+
+        <div id="menubar">
+            <ul>
+                <li><a href="{% url 'home' %}">Home</a></li>
+                <li><a href="{% url 'top_riddles' %}">Top Riddles</a></li>
+                <li><a href="{% url 'recent_riddles' %}">Recent Riddles</a></li>
+                <li><a href="{% url 'about' %}">Create a Riddle</a></li>
+                <li><a href="{% url 'add_riddle' %}">About</a></li>
+            </ul>
+        </div>
+
+        <div id="buttons">
             {% if user.is_authenticated %}
-            <li>
-                <a href="{% url 'user' user.username %}">My Account</a>
-            </li>
-            <li>
-                <a href="{% url 'logout' %}">Logout</a>
-            </li>
+                <a href="{% url 'login' %}" class="btn btn-default">Log In</a>
+                <a href="{% url 'register' %}" class="btn btn-default">Register</a>
             {% else %}
-            </li>
-            <li>
-                <a href="{% url 'login' %}">Sign In</a>
-            </li>
-            <li>
-                <a href="{% url 'register' %}">Sign Up</a>
-            </li>
+                <a href="{% url 'user' user.username %}">Hello, {{ user.username }}</a>
+                <a href="{% url 'logout' %}" class="btn btn-default">Log Out</a>
             {% endif %}
-        </ul>
-
+        </div>
     </div>
+
     <div>
-        {% block body_block %} {% endblock %}
+        {% block body_block %}
+        {% endblock %}
     </div>
-    <hr />
-
 </body>
 </html>

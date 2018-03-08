@@ -1,0 +1,54 @@
+body {
+    color: rgba(0, 0, 0, 0.7);
+}
+
+.box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #EFF0F1;
+}
+
+#logo {
+    flex: 1 1 auto;
+    font-size: 50pt;
+    padding: 5px 0px 20px 15px;
+    text-align: center;
+}
+
+#menubar {
+    flex: 5 1 auto;
+    justify-self: flex-start;
+}
+
+#menubar a {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+}
+
+#menubar a:hover {
+    text-decoration: underline;
+}
+
+#menubar ul li
+{
+    list-style-type: none;
+    display: inline;
+    padding: 0px 10px 0px;
+    font-size: 20pt;
+}
+
+#menubar li+li {
+    border-left: 1px solid rgba(0, 0, 0, 0.5);
+}
+
+#buttons {
+    flex: 0 0 min-content;
+    justify-self: flex-end;
+    text-align: right;
+    padding: 10px 25px 10px;
+}
+
+#buttons a {
+    display: block;
+}
