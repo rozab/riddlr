@@ -6,4 +6,3 @@ from django.urls import reverse
 def home(request):
     context_dict = {'welcome':"Welcome to Riddlr"}
     return render(request, 'Riddlr/home.html', context_dict)
-
