@@ -6,3 +6,8 @@ h1 {
     color: navy;
     margin-left: 20px;
 }
+
+#wide-display{
+width: 700px
+float: right
+}
