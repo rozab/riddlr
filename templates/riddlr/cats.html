@@ -1,0 +1,9 @@
+<ul>
+    {% if riddles %}
+        {% for r in riddles %}
+            <li><a href="{% url 'riddle' r.id %}">{{ r.question }}</a></li>
+        {% endfor %}
+    {% else %}
+        <li> No riddles here :(</li>
+    {% endif %}
+</ul>

@@ -22,6 +22,47 @@ from django.conf.urls.static import static
 from riddlr import views
 
 urlpatterns = [
-    url(r'^$', views.home, name='home'),
-    path('admin/', admin.site.urls),
+    path('',
+         views.home,
+         name='home'),
+
+    path('about/',
+         views.about,
+         name='about'),
+
+    path('top_riddles/',
+         views.top_riddles,
+         name='top_riddles'),
+
+    path('recent_riddles/',
+         views.recent_riddles,
+         name='recent_riddles'),
+
+    path('add_riddle/',
+         views.add_riddle,
+         name='add_riddle'),
+
+    path('riddle/<id>/',
+         views.riddle,
+         name='riddle'),
+
+    path('user/<username>/',
+         views.user,
+         name='user'),
+
+    path('login/',
+         views.login,
+         name='login'),
+
+    path('logout/',
+         views.logout,
+         name='logout'),
+
+    path('register/',
+         views.register,
+         name='register'),
+
+
+    path('admin/',
+         admin.site.urls),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
