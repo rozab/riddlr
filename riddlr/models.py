@@ -3,9 +3,9 @@ from django.contrib.auth.models import User
 
 class Riddle(models.Model):
     riddle_id = models.IntegerField(unique=True)
-    question = models.CharField(150)
-    details = models.CharField(800)
-    answer = models.CharField(30)
+    question = models.CharField(max_length=150)
+    details = models.CharField(max_length=800)
+    answer = models.CharField(max_length=30)
     date_posted = models.DateField()
     difficulty = models.IntegerField()
     rating = models.IntegerField()
