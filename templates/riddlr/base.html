@@ -1,45 +1,53 @@
-<!DOCTYPE html>
-{% load staticfiles %}
-{% load rango_template_tags %}
+<!DOCTYPE html> {% load staticfiles %} {% load rango_template_tags %}
 <html>
+
 <head>
-<link rel="stylesheet" type="text/css" href="style.css">
-<title>
-Riddlr -
-{% block title_block %}
-How to Riddle with Riddlr!
-{% endblock %}
-</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <title>
+        Riddlr - {% block title_block %} How to Riddle with Riddlr! {% endblock %}
+    </title>
 </head>
+
 <body>
-<div>
-<ul>
-<li>
-<a href="{% url 'riddlr:home' %}">Homepage | </a>
-<a href="{% url 'riddlr:top_riddles' %}">Top Riddles | </a>
-<a href="{% url 'riddlr:recent_riddles' %}">Recent Riddles | </a>
-<a href="{% url 'riddlr:top_riddles' %}">Top Riddles | </a>
-<a href="{% url 'riddlr:about' %}">About</a>
-{% if user.is_authenticated %}
-<a href="{% url 'riddlr:add_riddle' %}">Add a New Riddle</a></li>
-<li><a href="{% url 'riddlr:account_details' %}">Account Details</a></li>
-<li><a href="{% url 'riddlr:logout' %}">Logout</a></li>
-{% else %}
-</li>
-<li><a href="{% url 'riddlr:login' %}">Sign In</a></li>
-<li><a href="{% url 'riddlr:register' %}">Sign Up</a></li>
-{% endif %}
-</ul>
-</div>
-<div>
-{% block sidebar_block %}
-<!-- this is a comment. {% get_category_list category %} -->
-{% endblock %}
-</div>
-<div>
-{% block body_block %}
-{% endblock %}
-</div>
-<hr />
+    <div>
+        <ul>
+            <li>
+                <a href="{% url 'riddlr:home' %}">Homepage | </a>
+                <a href="{% url 'riddlr:top_riddles' %}">Top Riddles | </a>
+                <a href="{% url 'riddlr:recent_riddles' %}">Recent Riddles | </a>
+                <a href="{% url 'riddlr:top_riddles' %}">Top Riddles | </a>
+                <a href="{% url 'riddlr:about' %}">About</a>
+                {% if user.is_authenticated %}
+                <a href="{% url 'riddlr:add_riddle' %}">Add a New Riddle</a>
+            </li>
+            <li>
+                <a href="{% url 'riddlr:account_details' %}">Account Details</a>
+            </li>
+            <li>
+                <a href="{% url 'riddlr:logout' %}">Logout</a>
+            </li>
+            {% else %}
+            </li>
+            <li>
+                <a href="{% url 'riddlr:login' %}">Sign In</a>
+            </li>
+            <li>
+                <a href="{% url 'riddlr:register' %}">Sign Up</a>
+            </li>
+            {% endif %}
+        </ul>
+
+    </div>
+    <div>
+        {% block sidebar_block %}
+        <!-- this is a comment. {% get_category_list category %} -->
+        {% endblock %}
+    </div>
+    <div>
+        {% block body_block %} {% endblock %}
+    </div>
+    <hr />
+
 </body>
-</html>
+
+</html>
