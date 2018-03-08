@@ -1,25 +1,26 @@
-{% extends 'rango/base.html' %}
+{% extends 'riddlr/base.html' %}
 {% load staticfiles %}
 {% block title_block %}
 Homepage
 {% endblock %}
 {% block body_block %}
-<h1>Rango says...</h1>
+<h1>Riddle me this...</h1>
 <div>
 {% if user.is_authenticated %}
-howdy {{ user.username }}!
+Welcome back {{ user.username }}!
 {% else %}
-hey there partner!
+Welcome new riddlr
 {% endif %}
 </div>
 <div>
-<h2>Top Five Categories</h2>
-{% if categories %}
+<h2>Top Riddles</h2>
+{% if riddles %}
 <ul>
-{% for category in categories %}
+{% for riddle in riddles %}
 <!-- Following line changed to add an HTML hyperlink -->
 <li>
-<a href="{% url 'rango:show_category' category.slug %}">
+<!-- CHANGE ME WHEN READY  -->
+<a href="{% url 'riddlr:show_riddle' category.slug %}">
 {{ category.name }}
 </a>
 </li>
@@ -28,19 +29,10 @@ hey there partner!
 {% else %}
 <strong>There are no categories present.</strong>
 {% endif %}
+<div id="wide_display">
+<h2> Recent Riddles </h2>
+<!-- CHAGNE ME TOO -->
+{% if 
 </div>
-<div>
-<h2>Top Five Pages</h2>
-{% if pages %}
-<ul>
-{% for page in pages %}
-<li><a href="{{ page.url}}">{{ page.title }}</a> </li>
-{% endfor %}
-</ul>
-{% else %}
-<strong>No pages at present.</strong>
-{% endif %}
-<p>visits: {{ visits }}</p>
-<img src="{% static "images/rango.jpg" %}" alt="Picture of Rango" />
 </div>
 {% endblock %}
