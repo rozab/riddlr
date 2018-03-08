@@ -46,9 +46,23 @@ body {
     flex: 0 0 min-content;
     justify-self: flex-end;
     text-align: right;
-    padding: 10px 25px 10px;
+    padding: 10px 25px 10px 10px;
 }
 
 #buttons a {
     display: block;
+}
+
+#buttons a+a {
+    margin-top: 10px;
+}
+
+#myprofile {
+    color: rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    text-align: center;
+}
+
+#myprofile:hover {
+    text-decoration: underline;
 }
