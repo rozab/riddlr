@@ -20,7 +20,6 @@ class Riddle(models.Model):
     # note there is an auto generated id field
     question = models.CharField(max_length=150)
     details = models.CharField(max_length=800)
-    answer = models.CharField(max_length=30)
     date_posted = models.DateField(auto_now_add=True)
     difficulty = models.IntegerField(default=75)
     rating = models.IntegerField(default=0)
@@ -29,7 +28,6 @@ class Riddle(models.Model):
     # TODO remove null=True at some point
     author = models.ForeignKey(User, models.CASCADE, null=True)
     answered_by = models.ManyToManyField(UserProfile, through='UserAnswer')
-
 
     # Set of answers implemented with json
     answers = models.CharField(max_length=300, default="")
