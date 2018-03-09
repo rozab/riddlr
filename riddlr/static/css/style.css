@@ -73,6 +73,16 @@ body {
     text-decoration: underline;
 }
 
-#content {
-    background-color: #F2E297;
+.contentpanel {
+    flex: 1 1 auto;
+
+    padding: 20px 20px 20px 20px;
+    margin: 20px 20px 20px 20px;
+
+    width: 500px;
+    height: 1000px;
+    border-width: 5px;
+    border-radius: 30px ;
+    border-color: rgba(0, 0, 0, 0.5);
+    border-style: solid
 }
