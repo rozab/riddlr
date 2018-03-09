@@ -86,3 +86,8 @@ body {
     border-color: rgba(0, 0, 0, 0.5);
     border-style: solid
 }
+
+/* TODO put this in home.css and make it work */
+#contentbox {
+    display: flex;
+}
