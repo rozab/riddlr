@@ -6,8 +6,11 @@ from django.urls import reverse
 
 def home(request):
     context_dict = {}
+    top_riddles = Riddle.objects.order_by('-rating')[:5]
+    recent_riddles = Riddle.objects.order_by('-date_posted')[:5]
+    top_riddlrs = UserProfile.objects.order_by('-score')[:5]
+    context_dict = {'top_riddles': top_riddles, 'recent_riddles': recent_riddles, 'top_riddlrs':top_riddlrs}
     return render(request, 'Riddlr/home.html', context_dict)
-
 
 def about(request):
     context_dict = {}
