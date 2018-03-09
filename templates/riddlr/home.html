@@ -8,22 +8,29 @@ Homepage
 
 {% block body_block %}
 <style type="text/css">
-  body {
+
+  #content {
     color: purple;
     background-color: #F2E297;
   }
 
+  #contentbox {
+      display: flex;
+  }
 
-  .top{
-      display: inline-block;
-      width: 500px;
-      height: 1000px;
-      border-width: 5px;
 
-      border-radius: 30px ;
-      border-color: white;
-      border-style: solid;
-      text-align: center;
+  .contentpanel {
+    flex: 1 1 auto;
+
+    display: inline-block;
+    width: 500px;
+    height: 1000px;
+    border-width: 5px;
+
+    border-radius: 30px ;
+    border-color: white;
+    border-style: solid;
+    text-align: center;
 
 
   }
@@ -33,13 +40,10 @@ Homepage
   }
 
   </style>
-<h1>Riddle me this...</h1>
-<div>
-    {% if user.is_authenticated %} Welcome back {{ user.username }}! {% else %} Welcome new riddlr {% endif %}
 
 </div>
-
-        <div class="top">
+    <div id="contentbox">
+        <div class="contentpanel">
             <h2>Top Riddles</h2>
 
             {% if top_riddles %}
@@ -63,7 +67,7 @@ Homepage
             <strong>There are no Top Riddles present.</strong>
             {% endif %}
         </div>
-        <div class="top">
+        <div class="contentpanel">
             <h2> Recent Riddles </h2>
             {% if riddles %}
             <ul>
@@ -87,7 +91,7 @@ Homepage
 
 
 
-        <div class="top">
+        <div class="contentpanel">
             <h3> Top Riddlrs </h3>
             {% if riddles %}
             <ul>
@@ -108,6 +112,7 @@ Homepage
             <strong>There are no Riddlrs present.</strong>
             {% endif %}
         </div>
+    </div>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
