@@ -2,80 +2,64 @@
 {% load staticfiles %}
 <link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% block title_block %}
-Homepage
+Home
 {% endblock %}
 
 {% block body_block %}
-
-</div>
-    <div id="contentbox">
-        <div class="contentpanel">
-            <h2>Top Riddles</h2>
-
+<div id="contentbox">
+    <div class="card contentpanel">
+        <div class="card-header">Top Riddles</div>
+        <div class="card-block">
             {% if top_riddles %}
-            <ul>
-                {% for riddle in top_riddles %}
-                <li>
-                    <div class="card">
-                        <ul class="list-group list-group-flush">
-                            <li class="list-group-item">
-                                <a href="{% url 'riddle' riddle.id %}">
+                <ul>
+                    {% for riddle in top_riddles %}
+                        <li>
+                            <a href="{% url 'riddle' riddle.id %}">
                                 {{ riddle.question }}
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                </li>
-                {% endfor %}
-            </ul>
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
             {% else %}
-            <strong>There are no Top Riddles present.</strong>
-            {% endif %}
-        </div>
-        <div class="contentpanel">
-            <h2> Recent Riddles </h2>
-            {% if riddles %}
-            <ul>
-                {% for riddle in riddles %}
-                <!-- Following line changed to add an HTML hyperlink -->
-                <li>
-                    <div class="card">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">CHANGEME</li>
-                      </ul>
-                    </div>
-                    <!-- CHANGE ME WHEN READY  -->
-
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <strong>There are no Recent Riddles present.</strong>
-            {% endif %}
-        </div>
-
-
-
-        <div class="contentpanel">
-            <h3> Top Riddlrs </h3>
-            {% if riddles %}
-            <ul>
-                {% for riddle in riddles %}
-                <!-- Following line changed to add an HTML hyperlink -->
-                <li>
-                    <div class="card">
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">CHANGEME</li>
-                      </ul>
-                    </div>
-                    <!-- CHANGE ME WHEN READY  -->
-
-                </li>
-                {% endfor %}
-            </ul>
-            {% else %}
-            <strong>There are no Riddlrs present.</strong>
+                <strong>There are no riddles present :(</strong>
             {% endif %}
         </div>
     </div>
+    <div class="card contentpanel">
+        <div class="card-header">Top Riddles</div>
+        <div class="card-block">
+            {% if recent_riddles %}
+                <ul>
+                    {% for riddle in recent_riddles %}
+                        <li>
+                            <a href="{% url 'riddle' riddle.id %}">
+                                {{ riddle.question }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no riddles present :(</strong>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card contentpanel">
+        <div class="card-header">Top Riddlrs</div>
+        <div class="card-block">
+            {% if top_riddlrs %}
+                <ul>
+                    {% for riddlr in top_riddlrs %}
+                        <li>
+                            <a href="{% url 'user' riddlr.username %}">
+                                {{ riddlr.username }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no riddlrs present :(</strong>
+            {% endif %}
+        </div>
+    </div>
+</div>
 {% endblock %}

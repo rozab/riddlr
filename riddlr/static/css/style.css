@@ -2,9 +2,13 @@ body {
     color: rgba(0, 0, 0, 0.7);
 }
 
-.reset-a:link, .reset-a:visited, .reset-a:hover {
+a:not(.btn) {
+    color: rgba(0, 0, 0, 0.5);
     text-decoration: inherit;
-    color: inherit;
+}
+
+a:hover:not(.btn) {
+    text-decoration: underline;
 }
 
 #headerbox {
@@ -18,9 +22,14 @@ body {
 #logo {
     flex: 1 1 auto;
     font-family: 'Indie Flower',-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol";
+    color: rgba(0, 0, 0, 0.7);
     font-size: 70pt;
     padding-left: 15px;
     text-align: center;
+}
+
+#logo:hover {
+    text-decoration: none;
 }
 
 #menubar {
@@ -28,17 +37,8 @@ body {
     justify-self: flex-start;
 }
 
-#menubar a {
-    color: rgba(0, 0, 0, 0.5);
-    text-decoration: none;
-}
 
-#menubar a:hover {
-    text-decoration: underline;
-}
-
-#menubar ul li
-{
+#menubar li {
     list-style-type: none;
     display: inline;
     padding: 0px 10px 0px;
@@ -63,31 +63,28 @@ body {
     margin-top: 10px;
 }
 
-#myprofile {
-    color: rgba(0, 0, 0, 0.5);
-    text-decoration: none;
-    text-align: center;
-}
-
-#myprofile:hover {
-    text-decoration: underline;
-}
-
 .contentpanel {
-    flex: 1 1 auto;
+    margin: 20px 20px;
+}
 
-    padding: 20px 20px 20px 20px;
-    margin: 20px 20px 20px 20px;
-
-    width: 500px;
-    height: 1000px;
-    border-width: 5px;
-    border-radius: 30px ;
-    border-color: rgba(0, 0, 0, 0.5);
-    border-style: solid
+.contentpanel .card-block {
+    padding: 20px 20px;
 }
 
 /* TODO put this in home.css and make it work */
 #contentbox {
     display: flex;
+}
+
+.contentpanel {
+    flex: 1 1 0;
+}
+
+.contentpanel li {
+    list-style-type: none;
+    padding: 20px 0px 20px;
+}
+
+.contentpanel li+li {
+    border-top: 1px solid rgba(0,0,0,0.5);
 }
