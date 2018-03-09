@@ -10,36 +10,45 @@ def home(request):
 
 
 def about(request):
-    return HttpResponse("about page")
+    context_dict = {}
+    return render(request, 'Riddlr/about.html', context_dict)
 
 
 def top_riddles(request):
-    return HttpResponse("top riddles")
+    context_dict = {}
+    return render(request, 'Riddlr/top_riddles.html', context_dict)
 
 
 def recent_riddles(request):
-    return HttpResponse("recent riddles")
+    context_dict = {}
+    return render(request, 'Riddlr/recent_riddles.html', context_dict)
 
 
 def add_riddle(request):
-    return HttpResponse("add riddle")
+    context_dict = {}
+    return render(request, 'Riddlr/add_riddle.html', context_dict)
 
 
 def riddle(request):
-    return HttpResponse("riddle")
+    context_dict = {}
+    return render(request, 'Riddlr/riddle.html', context_dict)
 
 
 def user(request):
-    return HttpResponse("user")
+    context_dict = {}
+    return render(request, 'Riddlr/home.html', context_dict)
 
 
 def login(request):
-    return HttpResponse("login")
+    context_dict = {}
+    return render(request, 'Riddlr/home.html', context_dict)
 
 
 def logout(request):
-    return HttpResponse("logout")
+    context_dict = {}
+    return render(request, 'Riddlr/home.html', context_dict)
 
 
 def register(request):
-    return HttpResponse("register")
+    context_dict = {}
+    return render(request, 'Riddlr/register.html', context_dict)
