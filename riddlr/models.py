@@ -6,11 +6,14 @@ import json
 class UserProfile(models.Model):
     user = models.OneToOneField(User, models.CASCADE)
 
-    date_joined = models.DateField()
-    score = models.IntegerField()
-    karma = models.IntegerField()
-    guess_ratio = models.FloatField()
-    picture = models.ImageField(upload_to='profile_images', blank=True)
+    date_joined = models.DateField(auto_now_add=True)
+    score = models.IntegerField(default=0)
+    karma = models.IntegerField(default=0)
+    # TODO decide how tf this is gonna work
+    # what value does it take when no answers / no wrong answers?
+    #  maybe null for no answers and -1 for inf
+    guess_ratio = models.FloatField(null=True)
+    picture = models.ImageField(upload_to='profile_images', null=True, blank=True)
 
     def __str__(self):
         return self.user.username
@@ -48,6 +51,6 @@ class UserAnswer(models.Model):
     user = models.ForeignKey(UserProfile, models.CASCADE)
     riddle = models.ForeignKey(Riddle, models.CASCADE)
 
-    num_tries = models.IntegerField()
-    correct = models.BooleanField()
+    num_tries = models.IntegerField(default=0)
+    correct = models.BooleanField(default=False)
     previous_answer = models.CharField(max_length=30)

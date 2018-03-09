@@ -50,8 +50,9 @@ Home
                 <ul>
                     {% for riddlr in top_riddlrs %}
                         <li>
+                            <!-- TODO fix this shit -->
                             <a href="{% url 'user' riddlr.username %}">
-                                {{ riddlr.username }}
+                                <!-- {{ riddlr.username }} -->
                             </a>
                         </li>
                     {% endfor %}

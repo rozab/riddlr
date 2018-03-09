@@ -1,3 +1,16 @@
 #contentbox {
     display: flex;
 }
+
+.contentpanel {
+    flex: 1 1 0;
+}
+
+.contentpanel li {
+    list-style-type: none;
+    padding: 20px 0px 20px;
+}
+
+.contentpanel li+li {
+    border-top: 1px solid rgba(0,0,0,0.5);
+}
