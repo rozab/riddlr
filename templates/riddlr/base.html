@@ -13,7 +13,7 @@
 </head>
 
 <body>
-    <div class="box">
+    <div id="headerbox">
         <div id="logo">riddlr</div>
 
         <div id="menubar">
@@ -26,9 +26,9 @@
             </ul>
         </div>
 
-        <div id="buttons">
+        <div id="accountbuttons">
             {% if user.is_authenticated %}
-                <a id="myprofile" href="{% url 'user' user.username %}">Hello, {{ user.username }}</a>
+                <a href="{% url 'user' user.username %}" id="myprofile">Hello, {{ user.username }}</a>
                 <a href="{% url 'logout' %}" class="btn btn-outline-dark">Log Out</a>
             {% else %}
                 <a href="{% url 'login' %}" class="btn btn-outline-dark">Log In</a>

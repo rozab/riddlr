@@ -2,7 +2,7 @@ body {
     color: rgba(0, 0, 0, 0.7);
 }
 
-.box {
+#headerbox {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -42,18 +42,17 @@ body {
     border-left: 1px solid rgba(0, 0, 0, 0.5);
 }
 
-#buttons {
+#accountbuttons {
     flex: 0 0 min-content;
     justify-self: flex-end;
-    text-align: right;
     padding: 10px 25px 10px 10px;
 }
 
-#buttons a {
+#accountbuttons a {
     display: block;
 }
 
-#buttons a+a {
+#accountbuttons a+a {
     margin-top: 10px;
 }
 
