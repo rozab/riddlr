@@ -33,9 +33,9 @@ def add_riddle(request):
     return render(request, 'riddlr/add_riddle.html', context_dict)
 
 
-def riddlr(request):
+def riddle(request):
     context_dict = {}
-    return render(request, 'riddlr/riddlr.html', context_dict)
+    return render(request, 'riddlr/riddle.html', context_dict)
 
 
 def user(request):
