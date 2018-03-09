@@ -33,14 +33,14 @@ def add_riddle(request):
     return render(request, 'riddlr/add_riddle.html', context_dict)
 
 
-def riddle(request):
+def riddle(request, id):
     context_dict = {}
     return render(request, 'riddlr/riddle.html', context_dict)
 
 
-def user(request):
+def user(request, username):
     context_dict = {}
-    return render(request, 'riddlr/home.html', context_dict)
+    return render(request, 'riddlr/user.html', context_dict)
 
 
 def login(request):
