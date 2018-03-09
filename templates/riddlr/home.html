@@ -1,37 +1,102 @@
 {% extends 'riddlr/base.html' %}
+<link  rel="stylesheet" style=""text/css" href="./style.css">
 {% load staticfiles %}
-
 {% block title_block %}
 Homepage
 {% endblock %}
 
 {% block body_block %}
+<style type="text/css">
+  body {
+    color: purple;
+    background-color: #7FFFD4;
+
+
+  }
+
+
+  .top{
+      display: inline-block;
+      width: 300px;
+      height: 300px;
+      border-width: 5px;
+      border-height: 5px;
+      border-radius: 30px ;
+      border-color: white;
+      border-style: solid;
+      text-align: center;
+
+
+  }
+  div.shift-right{
+      float: left;
+      width: 300px;
+  }
+
+  </style>
 <h1>Riddle me this...</h1>
 <div>
     {% if user.is_authenticated %} Welcome back {{ user.username }}! {% else %} Welcome new riddlr {% endif %}
 
 </div>
-<div>
-    <h2>Top Riddles</h2>
-    {% if riddles %}
-    <ul>
-        {% for riddle in riddles %}
-        <!-- Following line changed to add an HTML hyperlink -->
-        <li>
-            <!-- CHANGE ME WHEN READY  -->
-            <a href="{% url 'riddlr:show_riddle' category.slug %}">
-                {{ category.name }}
-            </a>
-        </li>
-        {% endfor %}
-    </ul>
-    {% else %}
-    <strong>There are no categories present.</strong>
-    {% endif %}
-    <div id="wide_display">
-        <h2> Recent Riddles </h2>
-        <!-- CHAGNE ME TOO -->
-        {% if
-    </div>
-</div>
+
+
+        <div class="top">
+            <h2>Top Riddles</h2>
+
+
+            {% if riddles %}
+
+            <ul>
+                {% for riddle in riddles %}
+                <!-- Following line changed to add an HTML hyperlink -->
+                <li>
+                    <!-- CHANGE ME WHEN READY  -->
+                    <a href="{% url 'riddlr:show_riddle' category.slug %}">
+                        {{ category.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <strong>There are no Top Riddles present.</strong>
+            {% endif %}
+        </div>
+        <div class="top">
+            <h2> Recent Riddles </h2>
+            {% if riddles %}
+            <ul>
+                {% for riddle in riddles %}
+                <!-- Following line changed to add an HTML hyperlink -->
+                <li>
+                    <!-- CHANGE ME WHEN READY  -->
+                    <a href="{% url 'riddlr:show_riddle' category.slug %}">
+                        {{ category.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <strong>There are no Recent Riddles present.</strong>
+            {% endif %}
+        </div>
+
+        <div class="top">
+            <h3> Recenty Riddles </h3>
+            {% if riddles %}
+            <ul>
+                {% for riddle in riddles %}
+                <!-- Following line changed to add an HTML hyperlink -->
+                <li>
+                    <!-- CHANGE ME WHEN READY  -->
+                    <a href="{% url 'riddlr:show_riddle' category.slug %}">
+                        {{ category.name }}
+                    </a>
+                </li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            <strong>There are no Recent Riddles present.</strong>
+            {% endif %}
+        </div>
 {% endblock %}
