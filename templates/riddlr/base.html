@@ -6,6 +6,7 @@
     <meta charset="UTF-8" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <title>
         {% block title_block %}riddlr{% endblock %}
@@ -14,7 +15,7 @@
 
 <body>
     <div id="headerbox">
-        <div id="logo">riddlr</div>
+        <a href="{% url 'home' %}" id="logo" class="reset-a">riddlr</a>
 
         <div id="menubar">
             <ul>
