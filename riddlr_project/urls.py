@@ -50,6 +50,10 @@ urlpatterns = [
          views.user,
          name='user'),
 
+    path('users/',
+         views.users,
+         name='users'),
+
     path('login/',
          views.login,
          name='login'),

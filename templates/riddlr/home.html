@@ -7,8 +7,12 @@ Home
 
 {% block body_block %}
 <div id="contentbox">
+
     <div class="card contentpanel">
-        <div class="card-header">Top Riddles</div>
+        <div class="card-header">
+            Top Riddles
+            <span><a href="{% url 'top_riddles' %}">See all</a></span>
+        </div>
         <div class="card-block">
             {% if top_riddles %}
                 <ul>
@@ -25,8 +29,12 @@ Home
             {% endif %}
         </div>
     </div>
+
     <div class="card contentpanel">
-        <div class="card-header">Recent Riddles</div>
+        <div class="card-header">
+            Recent Riddles
+            <span><a href="{% url 'recent_riddles' %}">See all</a></span>
+        </div>
         <div class="card-block">
             {% if recent_riddles %}
                 <ul>
@@ -44,7 +52,10 @@ Home
         </div>
     </div>
     <div class="card contentpanel">
-        <div class="card-header">Top Riddlrs</div>
+        <div class="card-header">
+            Top Riddlrs
+            <span><a href="{% url 'users' %}">See all</a></span>
+        </div>
         <div class="card-block">
             {% if top_riddlrs %}
                 <ul>
@@ -61,5 +72,6 @@ Home
             {% endif %}
         </div>
     </div>
+
 </div>
 {% endblock %}

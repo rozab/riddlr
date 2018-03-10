@@ -41,6 +41,10 @@ def user(request, username):
     context_dict = {}
     return render(request, 'riddlr/user.html', context_dict)
 
+def users(request):
+    context_dict = {}
+    return render(request, 'riddlr/users.html', context_dict)
+
 def login(request):
     context_dict = {}
     return render(request, 'riddlr/login.html', context_dict)
