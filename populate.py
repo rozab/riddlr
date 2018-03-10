@@ -13,29 +13,29 @@ def populate():
 
     users = [
         {"username": "freddo",
-         "score":20,
-         "karma":4,
-         "guess_ratio":1.2},
-         {"username": "ginny",
-         "score":3,
-         "karma":-1,
-         "guess_ratio":0.8},
-         {"username": "rich",
-         "score":43,
-         "karma":35,
-         "guess_ratio":3.448922},
-         {"username": "xx_dumbledore_xx",
-         "score":98,
-         "karma":80,
-         "guess_ratio":15.7424552},
-         {"username": "lando",
-         "score":2,
-         "karma":0,
-         "guess_ratio":-1},
-         {"username": "blim",
-         "score":0,
-         "karma":0,
-         "guess_ratio":None},
+         "score": 20,
+         "karma": 4,
+         "guess_ratio": 1.2},
+        {"username": "ginny",
+         "score": 3,
+         "karma": -1,
+         "guess_ratio": 0.8},
+        {"username": "rich",
+         "score": 43,
+         "karma": 35,
+         "guess_ratio": 3.448922},
+        {"username": "xx_dumbledore_xx",
+         "score": 98,
+         "karma": 80,
+         "guess_ratio": 15.7424552},
+        {"username": "lando",
+         "score": 2,
+         "karma": 0,
+         "guess_ratio": -1},
+        {"username": "blim",
+         "score": 0,
+         "karma": 0,
+         "guess_ratio": None},
     ]
 
     riddles = [
@@ -47,14 +47,14 @@ def populate():
          "answer_list": ["Four", "4"]},
     ]
 
-# things break when users are added and i dont know why
-    # for u in users:
-    #     add_user(u["username"], u["score"], u["karma"], u["guess_ratio"])
-    # print("Added "+str(len(users))+" users.")
+    for u in users:
+        add_user(u["username"], u["score"], u["karma"], u["guess_ratio"])
+    print("Added "+str(len(users))+" users.")
 
     for r in riddles:
         add_riddle(r["question"], r["answer_list"])
     print("Added "+str(len(riddles))+" riddles.")
+
 
 def add_user(username, score, karma, guess_ratio):
     u = User.objects.get_or_create(username=username)[0]

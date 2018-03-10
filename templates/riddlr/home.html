@@ -26,7 +26,7 @@ Home
         </div>
     </div>
     <div class="card contentpanel">
-        <div class="card-header">Top Riddles</div>
+        <div class="card-header">Recent Riddles</div>
         <div class="card-block">
             {% if recent_riddles %}
                 <ul>
@@ -50,9 +50,8 @@ Home
                 <ul>
                     {% for riddlr in top_riddlrs %}
                         <li>
-                            <!-- TODO fix this shit -->
-                            <a href="{% url 'user' riddlr.username %}">
-                                <!-- {{ riddlr.username }} -->
+                            <a href="{% url 'user' riddlr.user.username %}">
+                                {{ riddlr.user.username }}
                             </a>
                         </li>
                     {% endfor %}

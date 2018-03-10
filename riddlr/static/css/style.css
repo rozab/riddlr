@@ -15,8 +15,7 @@ a:hover:not(.btn) {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background-color: #EFF0F1;
-    margin-bottom: 30px;
+    background: #EFF0F1;
 }
 
 #logo {
@@ -25,6 +24,7 @@ a:hover:not(.btn) {
     color: rgba(0, 0, 0, 0.7);
     font-size: 70pt;
     padding-left: 15px;
+    padding-right: 10px;
     text-align: center;
 }
 
@@ -34,14 +34,16 @@ a:hover:not(.btn) {
 
 #menubar {
     flex: 5 1 auto;
-    justify-self: flex-start;
+    /* because justify-self still isnt properly supported */
+    margin-right: auto;
+    margin-bottom: 0;
+    padding-left: 0;
 }
-
 
 #menubar li {
     list-style-type: none;
     display: inline;
-    padding: 0px 10px 0px;
+    padding: 0 10px 0;
     font-size: 20pt;
 }
 
@@ -63,12 +65,26 @@ a:hover:not(.btn) {
     margin-top: 10px;
 }
 
+#myprofile {
+    text-align: center;
+}
+
+#content {
+    padding: 30px;
+}
+
+/* below here are general styles not just for the base template */
+
 .contentpanel {
-    margin: 20px 20px;
+    margin: 20px;
 }
 
 .contentpanel .card-block {
-    padding: 20px 20px;
+    padding: 20px 40px;
+}
+
+.card-header {
+    background: #EFF0F1;
 }
 
 /* TODO put this in home.css and make it work */
@@ -80,9 +96,13 @@ a:hover:not(.btn) {
     flex: 1 1 0;
 }
 
+.contentpanel ul {
+    padding-left: 0;
+}
+
 .contentpanel li {
     list-style-type: none;
-    padding: 20px 0px 20px;
+    padding: 20px 0 20px;
 }
 
 .contentpanel li+li {

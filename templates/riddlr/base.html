@@ -16,19 +16,17 @@
     <div id="headerbox">
         <a href="{% url 'home' %}" id="logo" class="reset-a">riddlr</a>
 
-        <div id="menubar">
-            <ul>
-                <li><a href="{% url 'home' %}">Home</a></li>
-                <li><a href="{% url 'top_riddles' %}">Top Riddles</a></li>
-                <li><a href="{% url 'recent_riddles' %}">Recent Riddles</a></li>
-                <li><a href="{% url 'add_riddle' %}">Create a Riddle</a></li>
-                <li><a href="{% url 'about' %}">About</a></li>
-            </ul>
-        </div>
+        <ul id="menubar">
+            <li><a href="{% url 'home' %}">Home</a></li>
+            <li><a href="{% url 'top_riddles' %}">Top Riddles</a></li>
+            <li><a href="{% url 'recent_riddles' %}">Recent Riddles</a></li>
+            <li><a href="{% url 'add_riddle' %}">Create a Riddle</a></li>
+            <li><a href="{% url 'about' %}">About</a></li>
+        </ul>
 
         <div id="accountbuttons">
             {% if user.is_authenticated %}
-                <!-- <a href="{% url 'user' user.username %}" id="myprofile">Hello, {{ user.username }}</a> -->
+                <a href="{% url 'user' user.username %}" id="myprofile">Hello, {{ user.username }}</a>
                 <a href="{% url 'logout' %}" class="btn btn-outline-dark" id="logout">Log Out</a>
             {% else %}
                 <a href="{% url 'login' %}" class="btn btn-outline-dark">Log In</a>
