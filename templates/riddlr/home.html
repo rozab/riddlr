@@ -51,7 +51,8 @@ Home
             {% endif %}
         </div>
     </div>
-    <div class="card contentpanel">
+    
+    <div class="card contentpanel" id="top_riddlrs">
         <div class="card-header">
             Top Riddlrs
             <span><a href="{% url 'users' %}">See all</a></span>
@@ -61,9 +62,15 @@ Home
                 <ul>
                     {% for riddlr in top_riddlrs %}
                         <li>
-                            <a href="{% url 'user' riddlr.user.username %}">
-                                {{ riddlr.user.username }}
-                            </a>
+                            {% if riddlr.picture %}
+                                <img src="{{ riddlr.picture.url }}">
+                            {% else %}
+                                <img src="{% static 'img/default.png' %}">
+                            {% endif %}
+                            <div class="infocard">
+                                <span class="name"><a href="{% url 'user' riddlr.user.username %}">{{ riddlr.user.username }}</a></span>
+                                <span>score: {{ riddlr.score }}</span>
+                            </div>
                         </li>
                     {% endfor %}
                 </ul>

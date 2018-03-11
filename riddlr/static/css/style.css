@@ -115,3 +115,34 @@ a:hover:not(.btn) {
 .contentpanel li+li {
     border-top: 1px solid rgba(0,0,0,0.5);
 }
+
+#top_riddlrs {
+    /* TODO figure this out */
+    flex: 1 0 0;
+}
+
+#top_riddlrs li {
+    display: flex;
+    align-items: center;
+    border-top: 0;
+    padding: 30px 0 30px;
+}
+
+#top_riddlrs img {
+    height: 100px;
+    width: 100px;
+}
+
+#top_riddlrs .infocard {
+    padding-left: 20px;
+    flex: initial;
+}
+
+#top_riddlrs li span {
+    display: block;
+    padding: 5px;
+}
+
+#top_riddlrs .name {
+    font-size: 26px;
+}
