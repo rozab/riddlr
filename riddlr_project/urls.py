@@ -66,7 +66,10 @@ urlpatterns = [
          views.register,
          name='register'),
 
-
     path('admin/',
          admin.site.urls),
+
+    # url(r'^accounts/', include('registration.backends.simple.urls')),
+    # reference to registration package
+
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
