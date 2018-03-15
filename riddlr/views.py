@@ -8,10 +8,9 @@ from riddlr.models import Riddle, UserProfile, UserAnswer
 
 def home(request):
     context_dict = {}
-    top_riddles = Riddle.objects.order_by('-rating')[:5]
-    recent_riddles = Riddle.objects.order_by('-date_posted')[:5]
-    top_riddlrs = UserProfile.objects.order_by('-score')[:5]
-    context_dict = {'top_riddles': top_riddles, 'recent_riddles': recent_riddles, 'top_riddlrs':top_riddlrs}
+    context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:5]
+    context_dict['recent_riddles'] = Riddle.objects.order_by('-date_posted')[:5]
+    context_dict['top_riddlrs'] = UserProfile.objects.order_by('-score')[:5]
     return render(request, 'riddlr/home.html', context_dict)
 
 def about(request):
@@ -40,6 +39,18 @@ def riddle(request, id):
 
 def user(request, username):
     context_dict = {}
+    try:
+        user = UserProfile.objects.get(username=username)
+        riddles = user.riddle_set
+        context_dict['top_riddles'] = riddles.order_by('-rating')
+        context_dict['recent_riddles'] = riddles.order_by('-date_posted')
+        context_dict['solved_riddles'] = user.useranswer_set.filter(correct=True).order_by('-date_posted')
+        
+    except User.DoesNotExist:
+        context_dict['top_riddles'] = None
+        context_dict['recent_riddles'] = None
+        context_dict['solved_riddles'] = None
+
     return render(request, 'riddlr/user.html', context_dict)
 
 def users(request):

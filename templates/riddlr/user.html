@@ -1,6 +1,12 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/user.css' %}">
+
 {% block title_block %}
-User
+{{ user.username }}'s Profile
 {% endblock %}
+
+<div id="userbadge">
+
+</div>

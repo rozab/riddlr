@@ -129,8 +129,8 @@ a:hover:not(.btn) {
 }
 
 #top_riddlrs img {
-    height: 100px;
-    width: 100px;
+    height: 70px;
+    width: 70px;
 }
 
 #top_riddlrs .infocard {
@@ -140,9 +140,9 @@ a:hover:not(.btn) {
 
 #top_riddlrs li span {
     display: block;
-    padding: 5px;
+    padding: 0px;
 }
 
 #top_riddlrs .name {
-    font-size: 26px;
+    font-size: 20px;
 }
