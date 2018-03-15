@@ -3,6 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from riddlr.models import Riddle, UserProfile, UserAnswer
+from django.contrib.auth.models import User
 #from riddlr.forms import UserForm, UserProfileForm
 
 
@@ -38,13 +39,13 @@ def riddle(request, id):
     return render(request, 'riddlr/riddle.html', context_dict)
 
 def user(request, username):
-    context_dict = {}
+    context_dict = {'username':username}
     try:
-        user = UserProfile.objects.get(username=username)
+        user = UserProfile.objects.get(user__username=username)
         riddles = user.riddle_set
         context_dict['top_riddles'] = riddles.order_by('-rating')
         context_dict['recent_riddles'] = riddles.order_by('-date_posted')
-        context_dict['solved_riddles'] = user.useranswer_set.filter(correct=True).order_by('-date_posted')
+        #context_dict['solved_riddles'] = user.useranswer_set.filter(correct=True).riddle_set.order_by('-date_posted')
         
     except User.DoesNotExist:
         context_dict['top_riddles'] = None

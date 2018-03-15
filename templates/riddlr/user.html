@@ -4,9 +4,74 @@
 <link rel="stylesheet" href="{% static 'css/user.css' %}">
 
 {% block title_block %}
-{{ user.username }}'s Profile
+{{ username }}'s Profile
 {% endblock %}
 
-<div id="userbadge">
+{% block body_block %}
+<div id="userinfo">
 
 </div>
+    
+<div id="listpanels">
+    <div class="card contentpanel">
+        <div class="card-header">
+            {{ username }}'s Top Riddles
+        </div>
+        <div class="card-block">
+            {% if top_riddles %}
+                <ul>
+                    {% for riddle in top_riddles %}
+                        <li>
+                            <a href="{% url 'riddle' riddle.id %}">
+                                {{ riddle.question }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>This user hasn't made any riddles :(</strong>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card contentpanel">
+        <div class="card-header">
+            {{ username }}'s Recent Riddles
+        </div>
+        <div class="card-block">
+            {% if recent_riddles %}
+                <ul>
+                    {% for riddle in recent_riddles %}
+                        <li>
+                            <a href="{% url 'riddle' riddle.id %}">
+                                {{ riddle.question }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>This user hasn't made any riddles :(</strong>
+            {% endif %}
+        </div>
+    </div>
+    <div class="card contentpanel">
+        <div class="card-header">
+            {{ username }}'s Solved Riddles
+        </div>
+        <div class="card-block">
+            {% if solved_riddles %}
+                <ul>
+                    {% for riddle in solved_riddles %}
+                        <li>
+                            <a href="{% url 'riddle' riddle.id %}">
+                                {{ riddle.question }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>This user hasn't solved any riddles :(</strong>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}

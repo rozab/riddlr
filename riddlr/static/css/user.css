@@ -1,3 +1,9 @@
 #contentbox {
     display: flex;
+    flex-direction: column;
+}
+
+#listpanels {
+    display: flex;
+    flex-direction: row;
 }

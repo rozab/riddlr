@@ -83,6 +83,19 @@ a:hover:not(.btn) {
     padding: 20px 40px;
 }
 
+.contentpanel ul {
+    padding-left: 0;
+}
+
+.contentpanel li {
+    list-style-type: none;
+    padding: 20px 0 20px;
+}
+
+.contentpanel li+li {
+    border-top: 1px solid rgba(0,0,0,0.5);
+}
+
 .card-header {
     background: #EFF0F1;
     font-size: 20px;
@@ -101,19 +114,6 @@ a:hover:not(.btn) {
 
 .contentpanel {
     flex: 1 1 0;
-}
-
-.contentpanel ul {
-    padding-left: 0;
-}
-
-.contentpanel li {
-    list-style-type: none;
-    padding: 20px 0 20px;
-}
-
-.contentpanel li+li {
-    border-top: 1px solid rgba(0,0,0,0.5);
 }
 
 #top_riddlrs {
@@ -145,4 +145,15 @@ a:hover:not(.btn) {
 
 #top_riddlrs .name {
     font-size: 20px;
+}
+
+/* TODO put this in user.css */
+#contentbox {
+    display: flex;
+    flex-direction: column;
+}
+
+#listpanels {
+    display: flex;
+    flex-direction: row;
 }
