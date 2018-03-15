@@ -148,7 +148,7 @@ a:hover:not(.btn) {
 }
 
 /* TODO put this in user.css */
-#contentbox {
+/* #contentbox {
     display: flex;
     flex-direction: column;
 }
@@ -156,4 +156,4 @@ a:hover:not(.btn) {
 #listpanels {
     display: flex;
     flex-direction: row;
-}
+} */
