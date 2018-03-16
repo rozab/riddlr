@@ -4,6 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from riddlr.models import Riddle, UserProfile, UserAnswer
 from django.contrib.auth.models import User
+from django.contrib.auth import authenticate, login
 from riddlr.forms import UserForm, UserProfileForm
 
 
