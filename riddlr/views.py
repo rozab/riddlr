@@ -43,13 +43,17 @@ def riddle(request, id):
 def user(request, username):
     context_dict = {'username':username}
     try:
-        user = UserProfile.objects.get(user__username=username)
+        user = User.objects.get(username=username)
+        userprofile = user.userprofile
+        context_dict['userprofile'] = userprofile
         riddles = user.riddle_set.all()
         context_dict['top_riddles'] = riddles.order_by('-rating')
         context_dict['recent_riddles'] = riddles.order_by('-date_posted')
-        #context_dict['solved_riddles'] = user.useranswer_set.filter(correct=True).riddle_set.order_by('-date_posted')
-        
+        context_dict['solved_answers'] = userprofile.useranswer_set.filter(correct=True).order_by('-riddle__date_posted')
+    
+    # TODO fix this exception
     except User.DoesNotExist:
+        context_dict['user'] = None
         context_dict['top_riddles'] = None
         context_dict['recent_riddles'] = None
         context_dict['solved_riddles'] = None

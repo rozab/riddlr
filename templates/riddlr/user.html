@@ -11,7 +11,20 @@
 
 {% block body_block %}
 <div id="userinfo">
-
+    <div id="userbadge">
+        {% if userprofile.picture %}
+            <img src="{{ userprofile.picture.url }}">
+        {% else %}
+            <img src="{% static 'img/default.png' %}">
+        {% endif %}
+        <span>{{ userprofile.user.username }}</span>
+    </div>
+    <div id="userdetails">
+        Score: {{ userprofile.score }} <br>
+        Karma: {{ userprofile.karma }} <br>
+        Guess Ratio: {{ userprofile.guess_ratio|floatformat:"0" }}% <br>
+        Joined {{ userprofile.date_joined|date:"d F Y" }} <br>
+    </div>
 </div>
     
 <div id="listpanels">
@@ -60,12 +73,12 @@
             {{ username }}'s Solved Riddles
         </div>
         <div class="card-block">
-            {% if solved_riddles %}
+            {% if solved_answers %}
                 <ul>
-                    {% for riddle in solved_riddles %}
+                    {% for answer in solved_answers %}
                         <li>
-                            <a href="{% url 'riddle' riddle.id %}">
-                                {{ riddle.question }}
+                            <a href="{% url 'riddle' answer.riddle.id %}">
+                                {{ answer.riddle.question }}
                             </a>
                         </li>
                     {% endfor %}

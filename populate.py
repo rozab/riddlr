@@ -38,6 +38,10 @@ def populate():
          "guess_ratio": None},
     ]
 
+    for u in users:
+        add_user(u["username"], u["score"], u["karma"], u["guess_ratio"])
+    print("Added "+str(len(users))+" users.")
+
     riddles = [
         {"question": "What walks on four legs in the morning, 2 legs in the afternoon and 3 legs in the evening?",
          "answer_list": ["man", "a man", "a person", "a human"],
@@ -64,10 +68,6 @@ def populate():
          "author": User.objects.get(username="rich"),
          "rating": 12},
     ]
-
-    for u in users:
-        add_user(u["username"], u["score"], u["karma"], u["guess_ratio"])
-    print("Added "+str(len(users))+" users.")
 
     for r in riddles:
         add_riddle(r["question"], r["answer_list"], r["author"],r["rating"])

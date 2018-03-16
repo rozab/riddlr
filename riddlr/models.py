@@ -29,8 +29,7 @@ class Riddle(models.Model):
     rating = models.IntegerField(default=0)
     num_answers = models.IntegerField(default=0)
 
-    # TODO remove null=True at some point
-    author = models.ForeignKey(User, models.CASCADE, null=True)
+    author = models.ForeignKey(User, models.CASCADE)
     answered_by = models.ManyToManyField(UserProfile, through='UserAnswer')
 
     # Set of answers implemented with json
