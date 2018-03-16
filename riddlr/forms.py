@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.models import User
-from riddlr.models import Riddle, UserProfile, UserAnswer  # ,Page
+from riddlr.models import Riddle, UserProfile, UserAnswer
 
 ############## NOT FINISHED AT ALL DONT USE
 ############## NOT FINISHED AT ALL DONT USE
@@ -13,9 +13,12 @@ from riddlr.models import Riddle, UserProfile, UserAnswer  # ,Page
 class RiddleForm(forms.ModelForm):
     question = forms.CharField(max_length=128,
     help_text="Please enter the riddle.")
+    answer = forms.CharField(max_length=128,
+    help_text="Enter accepted answers in a comma separated list")
     difficulty = forms.IntegerField(widget=forms.HiddenInput(), initial=75)
     rating = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     num_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    
     
     class Meta:
         model = Riddle
