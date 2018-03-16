@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from riddlr.models import Riddle, UserProfile, UserAnswer
 from django.contrib.auth.models import User
-from django.contrib.auth import authenticate, login
+from django.contrib.auth import authenticate, login, logout
 from riddlr.forms import UserForm, UserProfileForm
 from riddlr import forms
 
@@ -81,9 +81,11 @@ def user_login(request):
         return render(request, 'riddlr/login.html')
     #  return render(request, 'riddlr/login.html', context_dict)
 
-def logout(request):
+def user_logout(request):
     context_dict = {}
-    return render(request, 'riddlr/logout.html', context_dict)
+    logout(request)
+    return HttpResponseRedirect(reverse('home'))
+    #  return render(request, 'riddlr/logout.html', context_dict)
 
 def register(request):
     context_dict = {}

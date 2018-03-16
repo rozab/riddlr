@@ -59,7 +59,7 @@ urlpatterns = [
          name='login'),
 
     path('logout/',
-         views.logout,
+         views.user_logout,
          name='logout'),
 
     path('register/',
