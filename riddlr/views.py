@@ -6,6 +6,7 @@ from riddlr.models import Riddle, UserProfile, UserAnswer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login
 from riddlr.forms import UserForm, UserProfileForm
+from riddlr import forms
 
 
 def home(request):
@@ -69,7 +70,7 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('home'))
             else:
                 return HttpResponse("Your account is disabled")
         else:
@@ -108,4 +109,4 @@ def register(request):
 
     return render(request, 'riddlr/register.html', {'user_form': user_form, 'profile_form': profile_form,
                                                     'registered': registered})
-    return render(request, context_dict)
+    #  return render(request, context_dict)
