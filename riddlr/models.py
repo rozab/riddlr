@@ -14,6 +14,8 @@ class UserProfile(models.Model):
     #  maybe null for no answers and -1 for inf
     guess_ratio = models.FloatField(null=True)
     picture = models.ImageField(upload_to='profile_images', null=True, blank=True)
+    riddles = models.TextField()  # temporary field type, need to solve which type / how riddles are gonna be handled
+    website = models.URLField(blank=True)
 
     def __str__(self):
         return self.user.username

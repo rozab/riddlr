@@ -55,7 +55,7 @@ urlpatterns = [
          name='users'),
 
     path('login/',
-         views.login,
+         views.user_login,
          name='login'),
 
     path('logout/',

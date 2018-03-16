@@ -4,7 +4,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from riddlr.models import Riddle, UserProfile, UserAnswer
 from django.contrib.auth.models import User
-#from riddlr.forms import UserForm, UserProfileForm
+from riddlr.forms import UserForm, UserProfileForm
 
 
 def home(request):
@@ -58,9 +58,25 @@ def users(request):
     context_dict = {}
     return render(request, 'riddlr/users.html', context_dict)
 
-def login(request):
+def user_login(request):
     context_dict = {}
-    return render(request, 'riddlr/login.html', context_dict)
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+
+        if user:
+            if user.is_active:
+                login(request, user)
+                return HttpResponseRedirect(reverse('index'))
+            else:
+                return HttpResponse("Your account is disabled")
+        else:
+            print("Invalid login details: {0}, {1}".format(username, password))
+            return HttpResponse("Invalid login details supplied")
+    else:
+        return render(request, 'riddlr/login.html')
+    #  return render(request, 'riddlr/login.html', context_dict)
 
 def logout(request):
     context_dict = {}
@@ -68,27 +84,27 @@ def logout(request):
 
 def register(request):
     context_dict = {}
-    # registered = False
-    # if request.method == 'POST':
-    #     user_form = UserForm(data=request.POST)
-    #     profile_form = UserProfileForm(data=request.POST)
-    #
-    #     if user_form.is_valid() and profile_form.is_valid():
-    #         user = user_form.save()
-    #         user.set_password(user.set_password)
-    #         user.save()
-    #         profile = profile_form.save(commit=False)
-    #         profile.user = user
-    #         if 'picture' in request.FILES:
-    #             profile.picture = request.FILES['picture']
-    #         profile.save()
-    #         registered = True
-    #     else:
-    #         print(user_form.errors, profile_form.errors)
-    # else:
-    #     user_form = UserForm()
-    #     profile_form = UserProfileForm()
-    #
-    # return render(request, 'riddlr/register.html', {'user_form': user_form, 'profile_form': profile_form,
-    #                                                 'registered': registered})
+    registered = False
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        profile_form = UserProfileForm(data=request.POST)
+
+        if user_form.is_valid() and profile_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.set_password)
+            user.save()
+            profile = profile_form.save(commit=False)
+            profile.user = user
+            if 'picture' in request.FILES:
+                profile.picture = request.FILES['picture']
+            profile.save()
+            registered = True
+        else:
+            print(user_form.errors, profile_form.errors)
+    else:
+        user_form = UserForm()
+        profile_form = UserProfileForm()
+
+    return render(request, 'riddlr/register.html', {'user_form': user_form, 'profile_form': profile_form,
+                                                    'registered': registered})
     return render(request, context_dict)
