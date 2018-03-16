@@ -1,6 +1,36 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/home.css' %}">
 {% block title_block %}
 Top Riddles
+{% endblock %}
+
+{% block body_block %}
+
+<div id="contentbox">
+
+    <div class="card contentpanel">
+        <div class="card-header">
+            Top Riddles
+            <span><a href="{% url 'top_riddles' %}">See all</a></span>
+        </div>
+        <div class="card-block">
+            {% if top_riddles %}
+                <ul>
+                    {% for riddle in top_riddles %}
+                        <li>
+                            <a href="{% url 'riddle' riddle.id %}">
+                                {{ riddle.question }}
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            {% else %}
+                <strong>There are no riddles present :(</strong>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
 {% endblock %}
