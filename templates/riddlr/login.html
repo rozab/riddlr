@@ -7,7 +7,7 @@ login
 {% block body_block %}
 
     <h1>Login to Riddlr</h1>
-    <form id="login_form" method="post" action="{% url 'riddlr:login' %}">
+    <form id="login_form" method="post" action="{% url 'login' %}">
     {% csrf_token %}
     Username: <input type="text" name="username" value="" size="50" />
     <br />
