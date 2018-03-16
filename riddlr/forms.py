@@ -13,13 +13,15 @@ from riddlr.models import Riddle, UserProfile, UserAnswer  # ,Page
 class RiddleForm(forms.ModelForm):
     question = forms.CharField(max_length=128,
     help_text="Please enter the riddle.")
+    answer = forms.CharField(max_length=128,
+    help_text="Enter accepted answers in a comma separated list")
     difficulty = forms.IntegerField(widget=forms.HiddenInput(), initial=75)
     rating = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     num_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     
     class Meta:
         model = Riddle
-        fields = ('question',)
+        fields = ('question', 'answer')
 
 # class PageForm(forms.ModelForm):
 #     title = forms.CharField(max_length=128,
