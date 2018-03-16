@@ -1,50 +1,20 @@
 {% extends 'riddlr/base.html' %}
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-<link  rel="stylesheet" style=""text/css" href="./style.css">
+{% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
 
 {% load staticfiles %}
 {% block title_block %}
 About
 {% endblock %}
 
-<style type="text/css">
-
-    #contentbox {
-      display: flex;
-        width: 300px;
-        border: 25px solid green;
-        padding: 25px;
-        margin: 25px;
-
-  }
-
-
-  .contentpanel {
-    flex: 1 1 auto;
-
-    padding: 20px 20px 20px 20px;
-    margin: 20px 20px 20px 20px;
-    width: 1000px;
-
-    border-width: 5px;
-
-    border-radius: 30px ;
-    border-color: rgba(0, 0, 0, 0.5);
-    border-style: solid;
-    text-align: center;
-
-
-  }
-
-
-    </style>
-
 {% block body_block %}
 
-    <div id="contentbox">
-        <div class="contentpanel">
 
-            <p>Riddlr is an online riddle sharing site for riddle solvers of all ages. Users
+
+
+            <h2>About</h2>
+
+                <div class="contentpanel">Riddlr is an online riddle sharing site for riddle solvers of all ages. Users
                 can find riddles to solve straight from the home page, sorted in categories such
                 as: newly created or top rated riddles, and upvote or downvote each riddle
                 solved. User specific riddles can also be found on that user’s profile page and
@@ -53,11 +23,10 @@ About
                 riddles they have solved. A difficulty will also be assigned to each riddle. This
                 is calculated from how many guesses users take to solve the riddle (with
                 an initial value supplied upon creation). Solving difficult riddles quickly will raise
-                a users score faster.
-            </p>
+                a users score faster.</div>
+              </div>
 
 
-        </div>
-    </div>
+
 
 {% endblock %}
