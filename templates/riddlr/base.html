@@ -7,6 +7,9 @@
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Indie+Flower">
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block headcontent %}
+    {% endblock %}
+
     <title>
         {% block title_block %}riddlr{% endblock %}
     </title>
