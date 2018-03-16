@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="09f1e6f1-cb28-472d-8b09-82a381511acd" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/riddlr/recent_riddles.html" afterPath="$PROJECT_DIR$/templates/riddlr/recent_riddles.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/riddlr/top_riddles.html" afterPath="$PROJECT_DIR$/templates/riddlr/top_riddles.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/registration/login.html" afterPath="$PROJECT_DIR$/templates/registration/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/riddlr/add_riddle.html" afterPath="$PROJECT_DIR$/templates/riddlr/add_riddle.html" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/riddlr/users.html" afterPath="$PROJECT_DIR$/templates/riddlr/users.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -58,11 +58,31 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="users.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="users.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/riddlr/users.html">
           <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="527">
+              <caret line="31" column="33" lean-forward="true" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="add_riddle.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/riddlr/add_riddle.html">
+          <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="255">
-              <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+              <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="registration_form.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/registration/registration_form.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="153">
+              <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -85,7 +105,6 @@
         <option value="$PROJECT_DIR$/templates/riddlr/login.html" />
         <option value="$PROJECT_DIR$/riddlr/forms.py" />
         <option value="$PROJECT_DIR$/riddlr/models.py" />
-        <option value="$PROJECT_DIR$/templates/registration/login.html" />
         <option value="$PROJECT_DIR$/riddlr_project/settings.py" />
         <option value="$PROJECT_DIR$/riddlr_project/urls.py" />
         <option value="$PROJECT_DIR$/riddlr/views.py" />
@@ -93,10 +112,11 @@
         <option value="$PROJECT_DIR$/riddlr/static/css/abouts.css" />
         <option value="$PROJECT_DIR$/templates/riddlr/about.html" />
         <option value="$PROJECT_DIR$/riddlr/static/css/about.css" />
-        <option value="$PROJECT_DIR$/templates/riddlr/add_riddle.html" />
         <option value="$PROJECT_DIR$/templates/riddlr/recent_riddles.html" />
         <option value="$PROJECT_DIR$/templates/riddlr/top_riddles.html" />
         <option value="$PROJECT_DIR$/templates/riddlr/users.html" />
+        <option value="$PROJECT_DIR$/templates/registration/login.html" />
+        <option value="$PROJECT_DIR$/templates/riddlr/add_riddle.html" />
       </list>
     </option>
   </component>
@@ -556,14 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="14" column="14" lean-forward="true" selection-start-line="14" selection-start-column="14" selection-end-line="14" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../tango_with_django_project/templates/rango/add_category.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -600,22 +612,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="187">
           <caret line="11" column="1" lean-forward="false" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/registration/registration_form.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="11" lean-forward="true" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/riddlr/add_riddle.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="18" column="12" lean-forward="true" selection-start-line="18" selection-start-column="12" selection-end-line="18" selection-end-column="12" />
           <folding />
         </state>
       </provider>
@@ -686,8 +682,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/riddlr/users.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="527">
+          <caret line="31" column="33" lean-forward="true" selection-start-line="31" selection-start-column="33" selection-end-line="31" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/login.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="12" column="16" lean-forward="false" selection-start-line="12" selection-start-column="16" selection-end-line="12" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/registration/registration_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/riddlr/add_riddle.html">
+      <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="15" column="16" lean-forward="false" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+          <caret line="15" column="27" lean-forward="false" selection-start-line="15" selection-start-column="27" selection-end-line="15" selection-end-column="27" />
           <folding />
         </state>
       </provider>
