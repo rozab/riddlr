@@ -13,12 +13,16 @@ Top Riddles
     <div class="card contentpanel">
         <div class="card-header">
             Top Riddles
+<<<<<<< HEAD:templates/riddlr/riddles.html
+            <span><a href="{% url 'riddles' %}">See all</a></span>
+=======
 
+>>>>>>> 544de9fb559d1848a1155543a482d7929e6b7525:templates/riddlr/top_riddles.html
         </div>
         <div class="card-block">
-            {% if top_riddles %}
+            {% if riddles %}
                 <ul>
-                    {% for riddle in top_riddles %}
+                    {% for riddle in riddles %}
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
                                 {{ riddle.question }}
