@@ -22,13 +22,13 @@ def about(request):
 
 def top_riddles(request):
     context_dict = {}
-    top_riddles = Riddle.objects.order_by('-rating')[:5]
+    top_riddles = Riddle.objects.order_by('-rating')[:]
     context_dict['top_riddles'] = top_riddles
     return render(request, 'riddlr/top_riddles.html', context_dict)
 
 def recent_riddles(request):
     context_dict = {}
-    recent_riddles = Riddle.objects.order_by('-date_posted')[:5]
+    recent_riddles = Riddle.objects.order_by('-date_posted')[:]
     context_dict['recent_riddles'] = recent_riddles
     return render(request, 'riddlr/recent_riddles.html', context_dict)
 
@@ -58,6 +58,7 @@ def user(request, username):
 
 def users(request):
     context_dict = {}
+    context_dict['top_riddlrs'] = UserProfile.objects.order_by('-score')[:]
     return render(request, 'riddlr/users.html', context_dict)
 
 def user_login(request):
