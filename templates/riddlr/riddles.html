@@ -13,11 +13,16 @@ Top Riddles
     <div class="card contentpanel">
         <div class="card-header">
             Top Riddles
-<<<<<<< HEAD:templates/riddlr/riddles.html
-            <span><a href="{% url 'riddles' %}">See all</a></span>
-=======
 
->>>>>>> 544de9fb559d1848a1155543a482d7929e6b7525:templates/riddlr/top_riddles.html
+            <select>
+                <option value="Difficulty">Filter by difficulty</option>
+                <option value="Date">Filter by date</option>
+                <option value="Rating">Filter by rating</option>#  javascript to sort riddles?
+            </select>
+
+            <span><a href="{% url 'riddles' %}">See all</a></span>
+
+
         </div>
         <div class="card-block">
             {% if riddles %}
