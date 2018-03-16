@@ -8,6 +8,7 @@ from django.contrib.auth import authenticate, login, logout
 from riddlr.forms import UserForm, UserProfileForm
 from riddlr import forms
 from django.contrib.auth.decorators import login_required
+from django.core.exceptions import ObjectDoesNotExist
 
 
 def home(request):
@@ -51,12 +52,9 @@ def user(request, username):
         context_dict['recent_riddles'] = riddles.order_by('-date_posted')
         context_dict['solved_answers'] = userprofile.useranswer_set.filter(correct=True).order_by('-riddle__date_posted')
     
-    # TODO fix this exception
-    except User.DoesNotExist:
-        context_dict['user'] = None
-        context_dict['top_riddles'] = None
-        context_dict['recent_riddles'] = None
-        context_dict['solved_riddles'] = None
+    except ObjectDoesNotExist:
+        context_dict['error'] = "User Not Found"
+        return render(request, 'riddlr/404.html')
 
     return render(request, 'riddlr/user.html', context_dict)
 

@@ -1,0 +1,20 @@
+{% extends 'riddlr/base.html' %}
+
+{% load staticfiles %}
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/404.css' %}">
+{% endblock %}
+
+{% block title_block %}
+    404
+{% endblock %}
+
+{% block body_block %}
+    <div>
+        <h1 class="display-2">404</h1>
+        <p class="lead">Something went wrong :(</p>
+        <p>{{ error }}</p>
+        <a href="{% url 'home' %}" class="btn btn-outline-dark">Come Take Me Home</a>
+    </div>
+    <img src="{% static 'img/sad_gollum.jpg' %}">
+{% endblock %}

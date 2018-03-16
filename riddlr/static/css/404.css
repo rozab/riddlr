@@ -1,0 +1,18 @@
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding-top: 50px;
+}
+
+#content div {
+    flex: initial;
+    font-size: 40px;
+    margin-right: 50px;
+}
+
+#content img {
+    flex: initial;
+    margin-left: 50px;
+}
