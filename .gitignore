@@ -4,6 +4,7 @@ db.sqlite3
 decorators.py
 test_utils.py
 .vscode/
+.idea/
 
 ### and githubs recommended python .gitignore
 
