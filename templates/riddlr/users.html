@@ -1,42 +1,47 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
-{% block title_block %}
-Top Riddles
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/users.css' %}">
 {% endblock %}
 
-
+{% block title_block %}
+Top Riddlrs
+{% endblock %}
 
 {% block body_block %}
-    <div id="contentbox">
+    <div id="left-margin"></div>
 
-        <div class="card contentpanel" id="top_riddlrs">
-            <div class="card-header">
-                Top Riddlrs
-
-            </div>
-            <div class="card-block">
-                {% if top_riddlrs %}
-                    <ul>
-                        {% for riddlr in top_riddlrs %}
-                            <li>
-                                {% if riddlr.picture %}
-                                    <img src="{{ riddlr.picture.url }}">
-                                {% else %}
-                                    <img src="{% static 'img/default.png' %}">
-                                {% endif %}
-                                <div class="infocard">
-                                    <span class="name"><a href="{% url 'user' riddlr.user.username %}">{{ riddlr.user.username }}</a></span>
-                                    <span>score: {{ riddlr.score }}</span>
-                                </div>
-                            </li>
-                        {% endfor %}
-                    </ul>
-                {% else %}
-                    <strong>There are no riddlrs present :(</strong>
-                {% endif %}
-            </div>
+    <div id="inner-content">
+        <div id="titlebar">
+            <h1>Top Riddlrs</h1>
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
         </div>
-
+        <ul id="results">
+            {% for u in users %}
+                <li>
+                    {% if riddlr.picture %}
+                        <img src="{{ riddlr.picture.url }}">
+                    {% else %}
+                        <img src="{% static 'img/default.png' %}">
+                    {% endif %}
+                    <div class="details">
+                            <a href="{% url 'user' u.user.username %}">{{ u.user.username }}</a>
+                        <table>
+                            <tr>
+                                <td>Score: {{ u.score }}</td>
+                                <td>Guess Ratio: {{ u.guess_ratio|floatformat:"0" }}%</td>
+                            </tr>
+                            <tr>
+                                <td>Karma: {{ u.karma }}</td>
+                                <td>Joined {{ u.date_joined|date:"SHORT_DATE_FORMAT" }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
     </div>
+
+    <div id="right-margin"></div>
 {% endblock %}

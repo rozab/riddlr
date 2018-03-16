@@ -59,8 +59,7 @@ def user(request, username):
     return render(request, 'riddlr/user.html', context_dict)
 
 def users(request):
-    context_dict = {}
-    context_dict['top_riddlrs'] = UserProfile.objects.order_by('-score')[:]
+    context_dict = {'users': UserProfile.objects.order_by('-score')}
     return render(request, 'riddlr/users.html', context_dict)
 
 def user_login(request):
