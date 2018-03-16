@@ -8,7 +8,6 @@ from django.contrib.auth import authenticate, login, logout
 from riddlr.forms import UserForm, UserProfileForm
 from riddlr import forms
 
-
 def home(request):
     context_dict = {}
     context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:5]
@@ -20,17 +19,14 @@ def about(request):
     context_dict = {}
     return render(request, 'riddlr/about.html', context_dict)
 
-def top_riddles(request):
+def riddles(request):
     context_dict = {}
     top_riddles = Riddle.objects.order_by('-rating')[:]
+    hard_riddles = Riddle.objects.filter(difficulty__gt=100)
+    medium_riddles = Riddle.objects.filter(difficulty__gt=50).filter(difficulty__lt=101)
+    easy_riddles = Riddle.objects.filter(difficulty__lt=51)
     context_dict['top_riddles'] = top_riddles
-    return render(request, 'riddlr/top_riddles.html', context_dict)
-
-def recent_riddles(request):
-    context_dict = {}
-    recent_riddles = Riddle.objects.order_by('-date_posted')[:]
-    context_dict['recent_riddles'] = recent_riddles
-    return render(request, 'riddlr/recent_riddles.html', context_dict)
+    return render(request, 'riddlr/riddles.html', context_dict)
 
 def add_riddle(request):
     context_dict = {}
@@ -79,13 +75,11 @@ def user_login(request):
             return HttpResponse("Invalid login details supplied")
     else:
         return render(request, 'riddlr/login.html')
-    #  return render(request, 'riddlr/login.html', context_dict)
 
 def user_logout(request):
     context_dict = {}
     logout(request)
     return HttpResponseRedirect(reverse('home'))
-    #  return render(request, 'riddlr/logout.html', context_dict)
 
 def register(request):
     context_dict = {}
@@ -96,7 +90,7 @@ def register(request):
 
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
-            user.set_password(user.password)
+            user.set_password(user.set_password)
             user.save()
             profile = profile_form.save(commit=False)
             profile.user = user
@@ -112,4 +106,4 @@ def register(request):
 
     return render(request, 'riddlr/register.html', {'user_form': user_form, 'profile_form': profile_form,
                                                     'registered': registered})
-    #  return render(request, context_dict)
+

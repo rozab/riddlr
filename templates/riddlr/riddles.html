@@ -13,12 +13,12 @@ Top Riddles
     <div class="card contentpanel">
         <div class="card-header">
             Top Riddles
-            <span><a href="{% url 'top_riddles' %}">See all</a></span>
+            <span><a href="{% url 'riddles' %}">See all</a></span>
         </div>
         <div class="card-block">
-            {% if top_riddles %}
+            {% if riddles %}
                 <ul>
-                    {% for riddle in top_riddles %}
+                    {% for riddle in riddles %}
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
                                 {{ riddle.question }}
