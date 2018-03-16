@@ -4,3 +4,39 @@
 {% block title_block %}
 Top Riddles
 {% endblock %}
+
+
+
+{% block body_block %}
+    <div id="contentbox">
+
+        <div class="card contentpanel" id="top_riddlrs">
+            <div class="card-header">
+                Top Riddlrs
+                <span><a href="{% url 'users' %}">See all</a></span>
+            </div>
+            <div class="card-block">
+                {% if top_riddlrs %}
+                    <ul>
+                        {% for riddlr in top_riddlrs %}
+                            <li>
+                                {% if riddlr.picture %}
+                                    <img src="{{ riddlr.picture.url }}">
+                                {% else %}
+                                    <img src="{% static 'img/default.png' %}">
+                                {% endif %}
+                                <div class="infocard">
+                                    <span class="name"><a href="{% url 'user' riddlr.user.username %}">{{ riddlr.user.username }}</a></span>
+                                    <span>score: {{ riddlr.score }}</span>
+                                </div>
+                            </li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <strong>There are no riddlrs present :(</strong>
+                {% endif %}
+            </div>
+        </div>
+
+    </div>
+{% endblock %}
