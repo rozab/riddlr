@@ -37,14 +37,14 @@ def add_riddle(request):
     return render(request, 'riddlr/add_riddle.html', context_dict)
 
 def riddle(request, id):
-    context_dict = {}
+    context_dict = {"riddle": Riddle.objects.get(id=id)}
     return render(request, 'riddlr/riddle.html', context_dict)
 
 def user(request, username):
     context_dict = {'username':username}
     try:
         user = UserProfile.objects.get(user__username=username)
-        riddles = user.riddle_set
+        riddles = user.riddle_set.all()
         context_dict['top_riddles'] = riddles.order_by('-rating')
         context_dict['recent_riddles'] = riddles.order_by('-date_posted')
         #context_dict['solved_riddles'] = user.useranswer_set.filter(correct=True).riddle_set.order_by('-date_posted')
