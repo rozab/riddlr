@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
 from riddlr.forms import UserForm, UserProfileForm
 from riddlr import forms
-
+from django.contrib.auth.decorators import login_required
 
 def home(request):
     context_dict = {}
@@ -32,6 +32,8 @@ def recent_riddles(request):
     context_dict['recent_riddles'] = recent_riddles
     return render(request, 'riddlr/recent_riddles.html', context_dict)
 
+
+@login_required(login_url='/login/')
 def add_riddle(request):
     context_dict = {}
     return render(request, 'riddlr/add_riddle.html', context_dict)
