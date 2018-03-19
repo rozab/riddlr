@@ -1,33 +1,26 @@
 {% extends 'riddlr/base.html' %}
+
 {% load staticfiles %}
+{% block headcontent %}
 <link rel="stylesheet" href="{% static 'css/about.css' %}">
+{% endblock %}
 
-
-{% load staticfiles %}
 {% block title_block %}
-About
+  About
 {% endblock %}
 
 {% block body_block %}
-
-
-
-
-            <h2>About</h2>
-
-                <p>Riddlr is an online riddle sharing site for riddle solvers of all ages. Users
-                can find riddles to solve straight from the home page, sorted in categories such
-                as: newly created or top rated riddles, and upvote or downvote each riddle
-                solved. User specific riddles can also be found on that user’s profile page and
-                each user has an associated karma - the sum of the ratings of all their
-                riddles. Additionally, users have a score calculated from the number of
-                riddles they have solved. A difficulty will also be assigned to each riddle. This
-                is calculated from how many guesses users take to solve the riddle (with
-                an initial value supplied upon creation). Solving difficult riddles quickly will raise
-                a users score faster.</p>
-              </div>
-
-
-
-
+  <div class="margin"></div>
+  <div id="inner-content">
+    <h1 class="display-2">Our Mission</h1>
+    <p class="lead">Riddlr is a revolutionary social platform which aims to pull the ancient art 
+      of riddle-telling into the 21st century. Our use of sans-serif fonts looks to the future 
+      while our minimalist design and gentle colour palette harkens back to the riddle's ancient 
+      Greek heritage. </p>
+    <p class="lead">Riddlr was developed by Rory Barnett, Christopher Gregory, Marc Herbert and 
+      Faizan Mohamed.</p>
+      <a href="https://github.com/rozab/riddlr_project" class="btn btn-outline-dark">Visit us on GitHub</a>
+  </div>
+  <img src="{% static 'img/bridgekeeper.jpg' %}">
+  <div class="margin"></div>
 {% endblock %}
