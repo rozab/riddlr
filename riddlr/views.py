@@ -14,19 +14,23 @@ from django.core.exceptions import ObjectDoesNotExist
 def home(request):
     context_dict = {}
     context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:5]
-    context_dict['recent_riddles'] = Riddle.objects.order_by('-date_posted')[:5]
+    context_dict['recent_riddles'] = Riddle.objects.order_by(
+        '-date_posted')[:5]
     context_dict['top_riddlrs'] = UserProfile.objects.order_by('-score')[:5]
     return render(request, 'riddlr/home.html', context_dict)
+
 
 def about(request):
     context_dict = {}
     return render(request, 'riddlr/about.html', context_dict)
 
+
 def riddles(request):
     context_dict = {}
     top_riddles = Riddle.objects.order_by('-rating')[:]
     hard_riddles = Riddle.objects.filter(difficulty__gt=100)
-    medium_riddles = Riddle.objects.filter(difficulty__gt=50).filter(difficulty__lt=101)
+    medium_riddles = Riddle.objects.filter(
+        difficulty__gt=50).filter(difficulty__lt=101)
     easy_riddles = Riddle.objects.filter(difficulty__lt=51)
     context_dict['top_riddles'] = top_riddles
     return render(request, 'riddlr/riddles.html', context_dict)
@@ -37,12 +41,14 @@ def add_riddle(request):
     context_dict = {}
     return render(request, 'riddlr/add_riddle.html', context_dict)
 
+
 def riddle(request, id):
     context_dict = {"riddle": Riddle.objects.get(id=id)}
     return render(request, 'riddlr/riddle.html', context_dict)
 
+
 def user(request, username):
-    context_dict = {'username':username}
+    context_dict = {'username': username}
     try:
         user = User.objects.get(username=username)
         userprofile = user.userprofile
@@ -50,17 +56,20 @@ def user(request, username):
         riddles = user.riddle_set.all()
         context_dict['top_riddles'] = riddles.order_by('-rating')
         context_dict['recent_riddles'] = riddles.order_by('-date_posted')
-        context_dict['solved_answers'] = userprofile.useranswer_set.filter(correct=True).order_by('-riddle__date_posted')
-    
+        context_dict['solved_answers'] = userprofile.useranswer_set.filter(
+            correct=True).order_by('-riddle__date_posted')
+
     except ObjectDoesNotExist:
         context_dict['error'] = "User Not Found"
         return render(request, 'riddlr/404.html')
 
     return render(request, 'riddlr/user.html', context_dict)
 
+
 def users(request):
     context_dict = {'users': UserProfile.objects.order_by('-score')}
     return render(request, 'riddlr/users.html', context_dict)
+
 
 def user_login(request):
     context_dict = {}
@@ -81,10 +90,12 @@ def user_login(request):
     else:
         return render(request, 'riddlr/login.html')
 
+
 def user_logout(request):
     context_dict = {}
     logout(request)
     return HttpResponseRedirect(reverse('home'))
+
 
 def register(request):
     context_dict = {}
@@ -112,3 +123,6 @@ def register(request):
     return render(request, 'riddlr/register.html', {'user_form': user_form, 'profile_form': profile_form,
                                                     'registered': registered})
 
+
+def help(request):
+    return render(request, 'riddlr/help.html')

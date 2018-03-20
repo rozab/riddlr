@@ -1,0 +1,24 @@
+#content {
+    display: flex;
+    flex-direction: row;
+}
+
+#left-margin {
+    flex: 1 1 0;
+}
+
+#right-margin {
+    flex: 2 1 0;
+}
+
+#inner-content {
+    flex: 1 1 auto;
+}
+
+#inner-content h1 {
+    font-size: 40px;
+}
+
+textarea, input, button {
+    margin-top: 20px;
+}

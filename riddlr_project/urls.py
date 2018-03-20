@@ -62,6 +62,10 @@ urlpatterns = [
          views.register,
          name='register'),
 
+    path('help/',
+         views.help,
+         name='help'),
+
     path('admin/',
          admin.site.urls),
 
