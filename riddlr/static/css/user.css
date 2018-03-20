@@ -26,8 +26,12 @@
 
 #userbadge span {
     flex: initial;
-    font-size: 30px;
     padding: 30px;
+}
+
+#userbadge p {
+    margin-bottom: 10px;
+    font-size: 30px;
 }
 
 #userdetails {

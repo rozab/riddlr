@@ -17,7 +17,12 @@
         {% else %}
             <img src="{% static 'img/default.png' %}">
         {% endif %}
-        <span>{{ userprofile.user.username }}</span>
+        <span>
+            <p>{{ userprofile.user.username }}</p>
+            {% if userprofile.user.username == user.username %}
+                <a class="btn btn-outline-dark btn-sm" role="button">Change picture</a>
+            {% endif %}
+        </span>
     </div>
     <div id="userdetails">
         Score: {{ userprofile.score }} <br>
