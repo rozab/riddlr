@@ -25,6 +25,9 @@ class Riddle(models.Model):
     # note there is an auto generated id field
     question = models.CharField(max_length=150)
     date_posted = models.DateField(auto_now_add=True)
+    # easy: 0-50
+    # medium: 51-100
+    # hard: 101-150
     difficulty = models.IntegerField(default=75)
     rating = models.IntegerField(default=0)
     num_answers = models.IntegerField(default=0)

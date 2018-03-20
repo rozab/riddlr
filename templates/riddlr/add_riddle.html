@@ -17,11 +17,26 @@
         <form id="RiddleForm" method="post" action="{% url 'add_riddle' %}">
             {% csrf_token %}
             {{ form.as_p }}
+
             <textarea class="form-control rounded-0" placeholder="Enter the question here" name="question" rows="7"></textarea>
+
             <input type="text" class="form-control rounded-0" placeholder="Enter the answer here" name="answer">
-            <small class="form-text text-muted">
-                You can enter multiple answers in a comma-seperated list.
-            </small>
+            <small class="form-text text-muted">You can enter multiple answers in a comma-seperated list.</small>
+            
+            <p>How hard do you think your riddle is?</p>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="difficulty" id="easyRadio" value="25">
+                <label class="form-check-label" for="easyRadio">Easy</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="difficulty" id="mediumRadio" value="75" checked>
+                <label class="form-check-label" for="mediumRadio">Medium</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="difficulty" id="hardRadio" value="125">
+                <label class="form-check-label" for="hardRadio">Hard</label>
+            </div>
+
             <button type="submit" class="btn btn-outline-dark" name="submit">Submit</button>
         </form>
         <br>
