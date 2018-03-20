@@ -1,4 +1,5 @@
 {% extends 'riddlr/base.html' %}
+{% load guess_ratio %}
 
 {% load staticfiles %}
 {% block headcontent %}
@@ -6,7 +7,7 @@
 {% endblock %}
 
 {% block title_block %}
-{{ username }}'s Profile
+    {{ username }}&#39;s Profile
 {% endblock %}
 
 {% block body_block %}
@@ -27,7 +28,7 @@
     <div id="userdetails">
         Score: {{ userprofile.score }} <br>
         Karma: {{ userprofile.karma }} <br>
-        Guess Ratio: {{ userprofile.guess_ratio|floatformat:"0" }}% <br>
+        Guess Ratio: {% guess_ratio userprofile.guess_ratio %} <br>
         Joined {{ userprofile.date_joined|date:"d F Y" }} <br>
     </div>
 </div>

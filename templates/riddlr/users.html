@@ -1,4 +1,5 @@
 {% extends 'riddlr/base.html' %}
+{% load guess_ratio %}
 
 {% load staticfiles %}
 {% block headcontent %}
@@ -30,7 +31,7 @@ Top Riddlrs
                         <table>
                             <tr>
                                 <td>Score: {{ u.score }}</td>
-                                <td>Guess Ratio: {{ u.guess_ratio|floatformat:"0" }}%</td>
+                                <td>Guess Ratio: {% guess_ratio u.guess_ratio %}</td>
                             </tr>
                             <tr>
                                 <td>Karma: {{ u.karma }}</td>

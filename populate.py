@@ -1,6 +1,6 @@
 import os
-os.environ.setdefault('DJANGO_SETTINGS_MODULE',
-                      'riddlr_project.settings')
+import subprocess
+os.environ.setdefault('DJANGO_SETTINGS_MODULE','riddlr_project.settings')
 
 import django
 django.setup()
@@ -89,5 +89,9 @@ def add_riddle(question, answer_list, author, rating):
 
 
 if __name__ == '__main__':
+    subprocess.call('ping 127.0.0.1', stdout=subprocess.PIPE)
+    subprocess.call("python manage.py migrate --run-syncdb", stdout=subprocess.PIPE)
+    subprocess.call("python manage.py makemigrations", stdout=subprocess.PIPE)
+    subprocess.call("python manage.py migrate", stdout=subprocess.PIPE)
     print("Populating...")
     populate()
