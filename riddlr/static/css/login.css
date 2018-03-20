@@ -12,7 +12,7 @@
 }
 
 #inner-content {
-    flex: 1 1 auto;
+    flex: 0 1 auto;
 }
 
 #inner-content h1 {
@@ -20,6 +20,6 @@
     margin-bottom: 30px;
 }
 
-textarea, input, button {
-    margin-top: 15px;
+#inner-content input {
+    margin: 15px 0px;
 }

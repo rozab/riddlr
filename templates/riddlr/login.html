@@ -1,19 +1,27 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
-{% block title_block %}
-login
+{% block headcontent %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
 {% endblock %}
+
+{% block title_block %}
+    Log in
+{% endblock %}
+
 {% block body_block %}
+    <div id="left-margin"></div>
 
-    <h1>Login to Riddlr</h1>
-    <form id="login_form" method="post" action="{% url 'login' %}">
-    {% csrf_token %}
-    Username: <input type="text" name="username" value="" size="50" />
-    <br />
-    Password: <input type="password" name="password" value="" size="50" />
-    <br />
-    <input type="submit" value="submit" />
-    </form>
+    <div id="inner-content">
+        <h1>Log in to your riddlr account</h1>
+        <form id="login_form" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" class="form-control rounded-0" placeholder="Username" name="username">
+            <input type="password" class="form-control rounded-0" placeholder="Password" name="password">
+            <button type="submit" class="btn btn-outline-dark" name="submit">Log in</button>
+            <small class="text-muted">or <a href="{% url 'register' %}">create an account</a></small>
+        </form>
+    </div>
 
+    <div id="right-margin"></div>
 {% endblock %}
