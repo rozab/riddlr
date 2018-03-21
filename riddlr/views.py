@@ -143,6 +143,8 @@ def register(request):
     return render(request, 'riddlr/register.html', {'user_form': user_form, 'profile_form': profile_form,
                                                     'registered': registered})
 
-
+def error_404(request, exception):
+    data={"name": "Riddlr.com"}
+    return render(request,'riddlr/404.html', data)
 def help(request):
     return render(request, 'riddlr/help.html')

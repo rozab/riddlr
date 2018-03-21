@@ -73,3 +73,6 @@ urlpatterns = [
     # reference to registration package
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+
+handler404 = 'riddlr.views.error_404'
