@@ -20,8 +20,8 @@
     margin-bottom: 30px;
 }
 
-textarea, input, button, p {
-    margin-top: 15px;
+div .form-field {
+    margin-top: 16px;
 }
 
 .form-check {
