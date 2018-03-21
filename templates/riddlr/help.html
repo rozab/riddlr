@@ -2,9 +2,25 @@
 
 {% load staticfiles %}
 {% block headcontent %}
-<link rel="stylesheet" href="{% static 'css/help.css' %}">
+<link rel="stylesheet" href="{% static 'css/about.css' %}">
 {% endblock %}
 
 {% block title_block %}
     Help
+{% endblock %}
+
+{% block body_block %}
+  <div class="margin"></div>
+  <div id="inner-content">
+    <h1 class="display-4">Simple Guide to becoming a Riddlr</h1>
+    <p class="lead">Writing a riddle is the reverse of solving a puzzle – you have to start with the answer.<br>
+        So first, choose something to write about (objects or animals are good for beginners).
+    </p>
+    <p class="lead">Once you have your answer you can begin to think of some clues that relate to your answer. <br> Sentences such as:
+        <br>&emsp;&emsp;&emsp;- I look like…<br>&emsp;&emsp;&emsp;- I sound like…<br>&emsp;&emsp;&emsp;- You find me…<br>&emsp;&emsp;&emsp;- I have…<br>&emsp;&emsp;&emsp;- I am…<br>&emsp;&emsp;&emsp;- I feel… </p>
+      <a href="{% url 'add_riddle'%}" class="btn btn-outline-dark">Give it a go!</a>
+
+  </div>
+  <img src="{% static 'img/Riddler.jpg' %}">
+  <div class="margin"></div>
 {% endblock %}
