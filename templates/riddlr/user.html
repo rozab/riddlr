@@ -19,7 +19,7 @@
             <img src="{% static 'img/default.png' %}">
         {% endif %}
         <span id="username">
-            <p>{{ userprofile.user.username }}</p>
+            <h1>{{ userprofile.user.username }}</h1>
             {% if userprofile.user.username == user.username %}
                 <form method="post" action="." enctype="multipart/form-data">
                     {% csrf_token %}
@@ -31,15 +31,17 @@
         </span>
     </div>
     <div id="userdetails">
-        Score: {{ userprofile.score }} <br>
-        Karma: {{ userprofile.karma }} <br>
-        Guess Ratio: {% guess_ratio userprofile.guess_ratio %} <br>
-        Joined {{ userprofile.date_joined|date:"d F Y" }} <br>
+        <div>
+            Score: {{ userprofile.score }} <br>
+            Karma: {{ userprofile.karma }} <br>
+            Guess Ratio: {% guess_ratio userprofile.guess_ratio %} <br>
+            Joined {{ userprofile.date_joined|date:"d F Y" }} <br>
+        </div>
     </div>
 </div>
-    
+
 <div id="listpanels">
-    <div class="card contentpanel">
+    <div class="card contentpanel rounded-0">
         <div class="card-header">
             {{ username }}'s Top Riddles
         </div>
@@ -59,7 +61,7 @@
             {% endif %}
         </div>
     </div>
-    <div class="card contentpanel">
+    <div class="card contentpanel rounded-0">
         <div class="card-header">
             {{ username }}'s Recent Riddles
         </div>
@@ -79,7 +81,8 @@
             {% endif %}
         </div>
     </div>
-    <div class="card contentpanel">
+    {% if userprofile.user.username == user.username %}
+    <div class="card contentpanel rounded-0">
         <div class="card-header">
             {{ username }}'s Solved Riddles
         </div>
@@ -99,5 +102,6 @@
             {% endif %}
         </div>
     </div>
+    {% endif %}
 </div>
 {% endblock %}

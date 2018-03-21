@@ -20,26 +20,29 @@
 
 #userbadge img {
     flex: initial;
-    height: 120px;
-    width: 120px;
+    height: 200px;
+    width: 200px;
 }
 
 #username {
     flex: initial;
-    padding: 30px;
+    margin-left: 30px;
 }
 
-#userbadge p {
+#username h1 {
     margin-bottom: 10px;
-    font-size: 30px;
 }
 
 #userdetails {
     flex: 1 1 0;
-    font-size: 20px;
     border: 1px solid rgba(0,0,0,0.5);
-    padding: 20px;
     margin: 30px;
+}
+
+/* for flexy purposes */
+#userdetails > div {
+    font-size: 20px;
+    padding: 20px;
 }
 
 #listpanels {

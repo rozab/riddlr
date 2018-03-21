@@ -11,7 +11,7 @@ Home
 {% endblock %}
 
 {% block body_block %}
-    <div class="card contentpanel">
+    <div class="card contentpanel rounded-0">
         <div class="card-header">
             Top Riddles
             <span><a href="{% url 'riddles' %}">See all</a></span>
@@ -33,7 +33,7 @@ Home
         </div>
     </div>
 
-    <div class="card contentpanel">
+    <div class="card contentpanel rounded-0">
         <div class="card-header">
             Recent Riddles
             <span><a href="{% url 'riddles' %}">See all</a></span>
@@ -55,7 +55,7 @@ Home
         </div>
     </div>
     
-    <div class="card contentpanel" id="top_riddlrs">
+    <div class="card contentpanel rounded-0" id="top_riddlrs">
         <div class="card-header">
             Top Riddlrs
             <span><a href="{% url 'users' %}">See all</a></span>
