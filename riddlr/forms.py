@@ -16,7 +16,7 @@ class RiddleForm(forms.ModelForm):
                                help_text="Please enter the riddle.")
     answer = forms.CharField(max_length=128,
                              help_text="Enter accepted answers in a comma separated list")
-    difficulty = forms.IntegerField(widget=forms.HiddenInput(), initial=75)
+    difficulty = forms.IntegerField()
     rating = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     num_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
 

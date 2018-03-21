@@ -41,8 +41,10 @@ def add_riddle(request):
     if request.method == 'POST':
         form = RiddleForm(request.POST)
         if form.is_valid():
+            form.user=UserProfile.objects.get(user=request.user)
             form.save(commit=True)
-            return index(request)
+            print("foo")
+            return home(request)
         else:
             print(form.errors)
 
