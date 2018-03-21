@@ -20,14 +20,14 @@
         {% endif %}
         <span id="username">
             <p>{{ userprofile.user.username }}</p>
-            {% comment %} {% if userprofile.user.username == user.username %} {% endcomment %}
+            {% if userprofile.user.username == user.username %}
                 <form method="post" action="." enctype="multipart/form-data">
                     {% csrf_token %}
                     <label class="btn btn-outline-dark btn-sm">
                         Change picture <input type="file" name="picture" onchange="form.submit()" hidden>
                     </label>
                 </form>
-            {% comment %} {% endif %} {% endcomment %}
+            {% endif %}
         </span>
     </div>
     <div id="userdetails">
