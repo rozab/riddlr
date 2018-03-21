@@ -1,6 +1,6 @@
 import os
 import subprocess
-os.environ.setdefault('DJANGO_SETTINGS_MODULE','riddlr_project.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'riddlr_project.settings')
 
 import django
 django.setup()
@@ -64,33 +64,37 @@ def populate():
          "author": User.objects.get(username="ginny"),
          "rating": -1},
         {"question": "A box without hinges, key, or lid, yet golden treasure inside is hid. What am I?",
-         "answer_list": ["an egg","egg"],
+         "answer_list": ["an egg", "egg"],
          "author": User.objects.get(username="rich"),
          "rating": 12},
     ]
 
     for r in riddles:
-        add_riddle(r["question"], r["answer_list"], r["author"],r["rating"])
+        add_riddle(r["question"], r["answer_list"], r["author"], r["rating"])
     print("Added "+str(len(riddles))+" riddles.")
 
 
 def add_user(username, score, karma, guess_ratio):
     u = User.objects.get_or_create(username=username)[0]
     u.save()
-    up = UserProfile.objects.get_or_create(
-        user=u, score=score, karma=karma, guess_ratio=guess_ratio)[0]
+    up = UserProfile.objects.get_or_create(user=u)[0]
+    up.score = score
+    up.karma = karma
+    up.guess_ratio = guess_ratio
     up.save()
 
 
 def add_riddle(question, answer_list, author, rating):
-    r = Riddle.objects.get_or_create(question=question, author=author, rating=rating)[0]
+    r = Riddle.objects.get_or_create(
+        question=question, author=author, rating=rating)[0]
     r.set_answers(answer_list)
     r.save()
 
 
 if __name__ == '__main__':
     subprocess.call('ping 127.0.0.1', stdout=subprocess.PIPE)
-    subprocess.call("python manage.py migrate --run-syncdb", stdout=subprocess.PIPE)
+    subprocess.call("python manage.py migrate --run-syncdb",
+                    stdout=subprocess.PIPE)
     subprocess.call("python manage.py makemigrations", stdout=subprocess.PIPE)
     subprocess.call("python manage.py migrate", stdout=subprocess.PIPE)
     print("Populating...")
