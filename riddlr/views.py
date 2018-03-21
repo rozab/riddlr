@@ -19,6 +19,8 @@ def home(request):
     context_dict['top_riddlrs'] = UserProfile.objects.order_by('-score')[:5]
     return render(request, 'riddlr/home.html', context_dict)
 
+def error_404(request):
+    return render(request, 'riddlr/404.html')
 
 def about(request):
     context_dict = {}
@@ -41,10 +43,10 @@ def add_riddle(request):
     if request.method == 'POST':
         form = RiddleForm(request.POST)
         if form.is_valid():
-            form.user=UserProfile.objects.get(user=request.user)
-            form.save(commit=True)
-            print("foo")
-            return home(request)
+            riddle = form.save(commit=False)
+            riddle.author = request.user
+            riddle.save()
+            return redirect('riddle', riddle.id)
         else:
             print(form.errors)
 

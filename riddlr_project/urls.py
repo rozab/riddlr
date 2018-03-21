@@ -69,6 +69,10 @@ urlpatterns = [
     path('admin/',
          admin.site.urls),
 
+    re_path(r'^.*',
+            views.error_404,
+            name = '404')
+
     # url(r'^accounts/', include('registration.backends.simple.urls')),
     # reference to registration package
 
