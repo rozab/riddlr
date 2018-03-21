@@ -24,7 +24,7 @@
     width: 120px;
 }
 
-#userbadge span {
+#username {
     flex: initial;
     padding: 30px;
 }
