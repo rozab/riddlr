@@ -5,6 +5,7 @@ decorators.py
 test_utils.py
 .vscode/
 .idea/
+media/
 
 ### and githubs recommended python .gitignore
 

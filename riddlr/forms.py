@@ -2,23 +2,24 @@ from django import forms
 from django.contrib.auth.models import User
 from riddlr.models import Riddle, UserProfile, UserAnswer  # ,Page
 
-############## NOT FINISHED AT ALL DONT USE
-############## NOT FINISHED AT ALL DONT USE
-############## NOT FINISHED AT ALL DONT USE
-############## NOT FINISHED AT ALL DONT USE
-############## NOT FINISHED AT ALL DONT USE
-############## NOT FINISHED AT ALL DONT USE
-############## NOT FINISHED AT ALL DONT USE
+# NOT FINISHED AT ALL DONT USE
+# NOT FINISHED AT ALL DONT USE
+# NOT FINISHED AT ALL DONT USE
+# NOT FINISHED AT ALL DONT USE
+# NOT FINISHED AT ALL DONT USE
+# NOT FINISHED AT ALL DONT USE
+# NOT FINISHED AT ALL DONT USE
+
 
 class RiddleForm(forms.ModelForm):
     question = forms.CharField(max_length=128,
-    help_text="Please enter the riddle.")
+                               help_text="Please enter the riddle.")
     answer = forms.CharField(max_length=128,
-    help_text="Enter accepted answers in a comma separated list")
+                             help_text="Enter accepted answers in a comma separated list")
     difficulty = forms.IntegerField(widget=forms.HiddenInput(), initial=75)
     rating = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
     num_answers = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    
+
     class Meta:
         model = Riddle
         fields = ('question', 'answer')
@@ -43,15 +44,18 @@ class RiddleForm(forms.ModelForm):
 #         model = Page
 #         exclude = ('category',)
 
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
-    
+
     class Meta:
         model = User
         fields = ('username', 'email', 'password')
-        
+
+
 class UserProfileForm(forms.ModelForm):
+    picture = forms.ImageField(required=False)
+    
     class Meta:
         model = UserProfile
         fields = ('picture', 'riddles')
-

@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 import json
+from PIL import Image
 
 
 class UserProfile(models.Model):
@@ -9,13 +10,37 @@ class UserProfile(models.Model):
     date_joined = models.DateField(auto_now_add=True)
     score = models.IntegerField(default=0)
     karma = models.IntegerField(default=0)
-    # TODO decide how tf this is gonna work
-    # what value does it take when no answers / no wrong answers?
-    #  maybe null for no answers and -1 for inf
+    # null for no answers and -1 for inf
     guess_ratio = models.FloatField(null=True)
     picture = models.ImageField(upload_to='profile_images', null=True, blank=True)
     riddles = models.TextField(blank=True)  # temporary field type, need to solve which type / how riddles are gonna be handled
-    #   website = models.URLField(blank=True)
+
+    def crop_picture(self):
+        if self.picture:
+            path = self.picture.path
+            im = Image.open(path)
+            width, height = im.size
+            new_size = min(width,height)
+
+            if width == height:
+                return
+            elif width > height:
+                crop_size = (width - new_size)//2
+                im = im.crop((crop_size,0,width-crop_size,height))
+            else:
+                crop_size = (height - new_size)//2
+                im = im.crop((0,crop_size,width,height-crop_size))
+
+            im.save(path)
+            return
+
+
+    def save(self, *args, **kwargs):
+        # saving twice isnt ideal but cant get proper img path otherwise
+        super().save(*args, **kwargs)
+        self.crop_picture()
+        super().save(*args, **kwargs)
+        
 
     def __str__(self):
         return self.user.username

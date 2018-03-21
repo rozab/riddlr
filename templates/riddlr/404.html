@@ -12,8 +12,7 @@
 {% block body_block %}
     <div>
         <h1 class="display-2">404</h1>
-        <p class="lead">Something went wrong :(</p>
-        <p>{{ error }}</p>
+        <p class="lead">{{ error }}</p>
         <a href="{% url 'home' %}" class="btn btn-outline-dark">Come Take Me Home</a>
     </div>
     <img src="{% static 'img/sad_gollum.jpg' %}">

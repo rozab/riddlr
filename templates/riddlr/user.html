@@ -18,11 +18,16 @@
         {% else %}
             <img src="{% static 'img/default.png' %}">
         {% endif %}
-        <span>
+        <span id="username">
             <p>{{ userprofile.user.username }}</p>
-            {% if userprofile.user.username == user.username %}
-                <a class="btn btn-outline-dark btn-sm" role="button">Change picture</a>
-            {% endif %}
+            {% comment %} {% if userprofile.user.username == user.username %} {% endcomment %}
+                <form method="post" action="." enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <label class="btn btn-outline-dark btn-sm">
+                        Change picture <input type="file" name="picture" onchange="form.submit()" hidden>
+                    </label>
+                </form>
+            {% comment %} {% endif %} {% endcomment %}
         </span>
     </div>
     <div id="userdetails">

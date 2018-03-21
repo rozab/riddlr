@@ -1,5 +1,5 @@
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from riddlr.models import Riddle, UserProfile, UserAnswer
@@ -27,12 +27,11 @@ def about(request):
 
 def riddles(request):
     context_dict = {}
-    top_riddles = Riddle.objects.order_by('-rating')[:]
-    hard_riddles = Riddle.objects.filter(difficulty__gt=100)
-    medium_riddles = Riddle.objects.filter(
+    context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:]
+    context_dict['hard_riddles'] = Riddle.objects.filter(difficulty__gt=100)
+    context_dict['medium_riddles'] = Riddle.objects.filter(
         difficulty__gt=50).filter(difficulty__lt=101)
-    easy_riddles = Riddle.objects.filter(difficulty__lt=51)
-    context_dict['top_riddles'] = top_riddles
+    context_dict['easy_riddles'] = Riddle.objects.filter(difficulty__lt=51)
     return render(request, 'riddlr/riddles.html', context_dict)
 
 
@@ -48,20 +47,32 @@ def riddle(request, id):
 
 
 def user(request, username):
-    context_dict = {'username': username}
+    context_dict = {}
     try:
         user = User.objects.get(username=username)
         userprofile = user.userprofile
-        context_dict['userprofile'] = userprofile
-        riddles = user.riddle_set.all()
-        context_dict['top_riddles'] = riddles.order_by('-rating')
-        context_dict['recent_riddles'] = riddles.order_by('-date_posted')
-        context_dict['solved_answers'] = userprofile.useranswer_set.filter(
-            correct=True).order_by('-riddle__date_posted')
-
     except ObjectDoesNotExist:
         context_dict['error'] = "User Not Found"
-        return render(request, 'riddlr/404.html')
+        return render(request, 'riddlr/404.html', context_dict)
+
+    if request.method == 'POST':
+        form = UserProfileForm(
+            request.POST, request.FILES, instance=userprofile)
+        if form.is_valid():
+            form.save(commit=True)
+            return redirect('user', user.username)
+        else:
+            print(form.errors)
+            context_dict['errors'] = form.errors
+            # TODO display errors properly
+
+    context_dict = {'username': username}
+    context_dict['userprofile'] = userprofile
+    riddles = user.riddle_set.all()
+    context_dict['top_riddles'] = riddles.order_by('-rating')
+    context_dict['recent_riddles'] = riddles.order_by('-date_posted')
+    context_dict['solved_answers'] = userprofile.useranswer_set.filter(
+        correct=True).order_by('-riddle__date_posted')
 
     return render(request, 'riddlr/user.html', context_dict)
 
@@ -72,6 +83,7 @@ def users(request):
 
 
 def user_login(request):
+    # TODO return errors properly with form
     context_dict = {}
     if request.method == 'POST':
         username = request.POST.get('username')

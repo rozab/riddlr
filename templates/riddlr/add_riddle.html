@@ -16,11 +16,10 @@
         <h1>Create a new riddle</h1>
         <form id="RiddleForm" method="post" action="{% url 'add_riddle' %}">
             {% csrf_token %}
-            {{ form.as_p }}
 
-            <textarea class="form-control rounded-0" placeholder="Enter the question here" name="question" rows="7"></textarea>
+            <textarea class="form-control rounded-0" placeholder="Enter the question here" name="question" rows="7" required></textarea>
 
-            <input type="text" class="form-control rounded-0" placeholder="Enter the answer here" name="answer">
+            <input type="text" class="form-control rounded-0" placeholder="Enter the answer here" name="answer" required>
             <small class="form-text text-muted">You can enter multiple answers in a comma-seperated list.</small>
             
             <p>How hard do you think your riddle is?</p>
