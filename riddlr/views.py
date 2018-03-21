@@ -5,7 +5,7 @@ from django.urls import reverse
 from riddlr.models import Riddle, UserProfile, UserAnswer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from riddlr.forms import UserForm, UserProfileForm
+from riddlr.forms import RiddleForm, UserForm, UserProfileForm
 from riddlr import forms
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
@@ -37,8 +37,16 @@ def riddles(request):
 
 @login_required(login_url='/login/')
 def add_riddle(request):
-    context_dict = {}
-    return render(request, 'riddlr/add_riddle.html', context_dict)
+    form = RiddleForm()
+    if request.method == 'POST':
+        form = RiddleForm(request.POST)
+        if form.is_valid():
+            form.save(commit=True)
+            return index(request)
+        else:
+            print(form.errors)
+
+    return render(request, 'riddlr/add_riddle.html', {'form': form})
 
 
 def riddle(request, id):
