@@ -1,22 +1,38 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
+{% block headcontent %}
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+{% endblock %}
+
 {% block title_block %}
     Register
 {% endblock %}
 
 {% block body_block %}
-    <h1>Register for Riddlr</h1>
-    {% if registered %}
-        registered
-        <a href="{% url 'home' %}">Return home</a><br />
-    {% else %}
-        <strong>Register here</strong>
-        <form id="user_form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
-        {% csrf_token %}
-        {{user_form.as_p}}
-        {{profile_form.as_p}}
-        <input type="submit" name="submit" value="Register" />
-    </form>
-    {% endif %}
+    <div id="left-margin"></div>
+
+    <div id="inner-content">
+        <h1>Create a new riddlr account</h1>
+        <form id="register-form" method="post" action="{% url 'register' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="text" class="form-control rounded-0" placeholder="Username" name="username">
+            <input type="password" class="form-control rounded-0" placeholder="Password" name="password">
+            <div class="form-group" id="image-group">
+                <div id="flex-group">
+                    <span class='label label-info'>Upload a profile picture:</span>
+                    <label class="btn btn-outline-dark btn-sm" for="imageUpload">
+                        <input id="imageUpload" type="file" name="picture" style="display:none" 
+                        onchange="$('#filename').html(this.files[0].name)">
+                        Browse
+                    </label>
+                </div>
+                <div class='small text-muted' id="filename"></div>
+            </div>
+            <button type="submit" class="btn btn-outline-dark" name="submit">Register</button>
+            <small class="text-muted">or <a href="{% url 'login' %}">log in to an existing account</a></small>
+        </form>
+    </div>
+
+    <div id="right-margin"></div>
 {% endblock %}
