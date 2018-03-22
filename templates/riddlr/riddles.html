@@ -13,13 +13,15 @@ Top Riddles
     <div class="card contentpanel">
         <div class="card-header">
             Top Riddles
-
-            <select>
-                <option value="Difficulty">Filter by difficulty</option>
-                <option value="Date">Filter by date</option>
-                <option value="Rating">Filter by rating</option>#  javascript to sort riddles?
-            </select>
-
+            <form action="" method="GET" id="selection-form">
+            {% csrf_token %}
+                <select id="sort">
+                    <option value="riddle.difficulty }}">Filter by difficulty</option>
+                    <option value="riddle.date_posted }}">Filter by date</option>
+                    <option value="riddle.rating }}">Filter by rating</option>#  javascript to sort riddles?
+                </select>
+            <input type="button" value="Update" id="selection-button">
+            </form>
             <span><a href="{% url 'riddles' %}">See all</a></span>
 
 
@@ -30,11 +32,12 @@ Top Riddles
                     {% for riddle in riddles %}
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
-                                {{ riddle.question }}
-                                {{ riddle.date_posted }}
-                                {{ riddle.difficulty }}
-                                {{ riddle.rating }}
+                                {{ riddle.question }} <br />
                             </a>
+                            <br />
+                            Date Posted:{{ riddle.date_posted }}<br />
+                            Difficulty: {{ riddle.difficulty }}<br />
+                            Rating: {{ riddle.rating }}<br />
                         </li>
                     {% endfor %}
                 </ul>

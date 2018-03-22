@@ -29,6 +29,18 @@ def about(request):
 
 def riddles(request):
     context_dict = {}
+    if request.method == 'GET':
+        selection = request.GET.get('sort', None)
+        if selection == "{{ riddle.rating }}":
+            context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:]
+            render(request, 'riddlr/riddles.html', context_dict)
+        elif selection == "{{ riddle.difficulty }}":
+            context_dict['top_riddles'] = Riddle.objects.order_by('-difficulty')[:]
+            render(request, 'riddlr/riddles.html', context_dict)
+        else:
+            context_dict['top_riddles'] = Riddle.objects.order_by('-date_posted')[:]
+            render(request, 'riddlr/riddles.html', context_dict)
+
     context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:]
     context_dict['hard_riddles'] = Riddle.objects.filter(difficulty__gt=100)
     context_dict['medium_riddles'] = Riddle.objects.filter(
