@@ -31,6 +31,9 @@ Top Riddles
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
                                 {{ riddle.question }}
+                                {{ riddle.date_posted }}
+                                {{ riddle.difficulty }}
+                                {{ riddle.rating }}
                             </a>
                         </li>
                     {% endfor %}
