@@ -20,14 +20,6 @@
     margin-bottom: 30px;
 }
 
-div .form-field {
-    margin-top: 16px;
-}
-
-.form-check {
-    margin-left: 30px;
-}
-
 #userinfo {
     display: flex;
     flex-direction: row;
@@ -41,3 +33,12 @@ div .form-field {
     justify-content: center;
     margin: 30px;
 }
+
+div .form-field {
+    margin-top: 16px;
+}
+
+.form-check {
+    margin-left: 30px;
+}
+
