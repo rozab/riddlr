@@ -60,18 +60,24 @@ class Riddle(models.Model):
     author = models.ForeignKey(User, models.CASCADE)
     answered_by = models.ManyToManyField(UserProfile, through='UserAnswer')
 
-    # Set of answers implemented with json
+    # Set of answers as comma seperated string
     answers = models.CharField(max_length=300, default="")
 
-    def set_answers(self):
-        self.answers = json.dumps(self.answers.split(","))
+    def update_fields(self):
+        useranswers = self.useranswer_set.all()
 
-    def get_answers(self):
-        return json.loads(self.answers)
+        self.num_answers = useranswers.count()
 
-    def save(self, *args, **kwargs):
-        self.set_answers()
-        super().save(*args, **kwargs)
+        # find average number of tries
+        # incorrect answer == +10 tries
+        total_tries = 0
+        for ua in useranswers:
+            total_tries += ua.num_tries
+            if not ua.correct:
+                total_tries += 10
+        mean = total_tries / self.num_answers
+        self.difficulty = mean * 20
+        self.save()
 
     class Meta:
         verbose_name_plural = 'riddles'
@@ -87,3 +93,7 @@ class UserAnswer(models.Model):
     num_tries = models.IntegerField(default=0)
     correct = models.BooleanField(default=False)
     answer = models.CharField(max_length=30, default="")
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.riddle.update_fields()

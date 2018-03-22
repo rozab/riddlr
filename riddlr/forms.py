@@ -14,7 +14,7 @@ from riddlr.models import Riddle, UserProfile, UserAnswer  # ,Page
 class RiddleForm(forms.ModelForm):
     question = forms.CharField(max_length=128,
                                help_text="Please enter the riddle.")
-    answer = forms.CharField(max_length=128,
+    answers = forms.CharField(max_length=128,
                              help_text="Enter accepted answers in a comma separated list")
     difficulty = forms.IntegerField()
     rating = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
@@ -22,7 +22,7 @@ class RiddleForm(forms.ModelForm):
 
     class Meta:
         model = Riddle
-        fields = ('question', 'answer')
+        fields = ('question', 'answers')
 
 # class PageForm(forms.ModelForm):
 #     title = forms.CharField(max_length=128,
@@ -44,11 +44,8 @@ class RiddleForm(forms.ModelForm):
 #         model = Page
 #         exclude = ('category',)
 
-class AnswerForm(forms.ModelForm):
-    answer = forms.CharField(max_length=128,help_text="Answer here.")
-
-    num_tries = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
-    correct = forms.BooleanField(widget=forms.HiddenInput(), initial=False)
+class AnswerForm(forms.Form):
+    answer = forms.CharField(max_length=30,help_text="Answer here.", initial="")
 
     class Meta:
         model = UserAnswer
@@ -67,4 +64,4 @@ class UserProfileForm(forms.ModelForm):
     
     class Meta:
         model = UserProfile
-        fields = ('picture', 'riddles')
+        fields = ('picture',)
