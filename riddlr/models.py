@@ -63,11 +63,15 @@ class Riddle(models.Model):
     # Set of answers implemented with json
     answers = models.CharField(max_length=300, default="")
 
-    def set_answers(self, answer_list):
-        self.answers = json.dumps(answer_list)
+    def set_answers(self):
+        self.answers = json.dumps(self.answers.split(","))
 
     def get_answers(self):
         return json.loads(self.answers)
+
+    def save(self, *args, **kwargs):
+        self.set_answers()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'riddles'
@@ -82,4 +86,4 @@ class UserAnswer(models.Model):
 
     num_tries = models.IntegerField(default=0)
     correct = models.BooleanField(default=False)
-    previous_answer = models.CharField(max_length=30)
+    answer = models.CharField(max_length=30, default="")

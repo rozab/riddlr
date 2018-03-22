@@ -54,19 +54,26 @@ def add_riddle(request):
 
 @login_required(login_url='/login/')
 def riddle(request, id):
-    form = AnswerForm()
+    useranswer = UserAnswer.objects.get_or_create(riddle=Riddle.objects.get(id=id), user=request.user.userprofile)[0]
     if request.method == 'POST':
-        form = AnswerForm(request.POST)
-        if form.is_valid():
-            answer = form.save(commit=False)
-            answer.user = request.user
+        form = AnswerForm(request.POST, instance=useranswer)
+        form.answer = request.POST['answer']
+        form.num_tries = useranswer.num_tries + 1
 
-            answer.save()
-            return redirect('riddle', riddle.id)
+        form.correct = False
+        answer_list = useranswer.riddle.get_answers()
+        for a in answer_list:
+            if form.answer == a.strip():
+                form.correct = True
+                break
+        if form.is_valid():
+            form.save()
         else:
             print(form.errors)
+    else:
+        form = AnswerForm(instance=useranswer)
 
-    context_dict = {"riddle": Riddle.objects.get(id=id)}
+    context_dict = {"riddle": Riddle.objects.get(id=id), 'form':form}
     return render(request, 'riddlr/riddle.html', context_dict)
 
 

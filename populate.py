@@ -87,7 +87,7 @@ def add_user(username, score, karma, guess_ratio):
 def add_riddle(question, answer_list, author, rating):
     r = Riddle.objects.get_or_create(
         question=question, author=author, rating=rating)[0]
-    r.set_answers(answer_list)
+    r.answers = ",".join(answer_list)
     r.save()
 
 
