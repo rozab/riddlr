@@ -54,6 +54,17 @@ def add_riddle(request):
 
 
 def riddle(request, id):
+    form = AnswerForm()
+    if request.method == 'POST':
+        form = AnswerForm(request.POST)
+        if form.is_valid():
+            answer = form.save(commit=False)
+            answer.user = request.user
+            answer.save()
+            return redirect('riddle', riddle.id)
+        else:
+            print(form.errors)
+
     context_dict = {"riddle": Riddle.objects.get(id=id)}
     return render(request, 'riddlr/riddle.html', context_dict)
 
