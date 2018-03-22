@@ -12,16 +12,6 @@
 
 
 <div id="inner-content">
-<form id="AnswerForm" method="post" action="{% url 'riddle' riddle.id %}">
-{% csrf_token %}
-{% for hidden in form.hidden_fields %}
-{{ hidden }}
-{% endfor %}
-{% for field in form.visible_fields %}
-{{ field.errors }}
-{{ field.help_text }}
-{{ field }}
-{% endfor %}
 
     {% if user.picture %}
         <img src="{{ u.picture.url }}">
@@ -31,9 +21,20 @@
     <h1>Users name goes here</h1>
     {% if user.picture %}
     <div class="details">
-        <a href="{% url 'user' u.user.username %}">{{ u.user.username }}</a>
+        <a href="{% url 'user' user.username %}" id="UsersProfile">{{ user.username }}</a>
+        <a href="{% url 'riddle' user.riddle %}" id="UsersRiddle">{{ user.riddle }}</a>
     </div>
     {% endif %}
+
+
+<form id="AnswerForm" method="post" action="{% url 'riddle' riddle.id %}">
+{% csrf_token %}
+{% for hidden in form.hidden_fields %}
+{{ hidden }}
+{% endfor %}
+
+
+
     <div class="form-field">
         <input type="text" class="form-control rounded-0" placeholder="Enter your answer here" name="answer" required>
     </div>
