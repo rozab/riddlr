@@ -9,11 +9,11 @@
 {% block body_block %}
 
 
-
     <div id="userinfo">
         <div id="userbadge">
-    {% if user.picture %}
-        <img src="{{ user.picture.url }}">
+
+    {% if {{riddle.author}}.picture %}
+        <img src="{{ user.{{riddle.author}}.picture.url }}">
     {% else %}
         <img src="{% static 'img/default.png' %}">
     {% endif %}
@@ -36,7 +36,6 @@
 {% for hidden in form.hidden_fields %}
 {{ hidden }}
 {% endfor %}
-
 
 
     <div class="form-field">
