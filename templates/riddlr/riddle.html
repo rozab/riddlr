@@ -1,10 +1,40 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
+<link rel="stylesheet" href="{% static 'css/add_riddle.css' %}">
 {% block title_block %}
     View Riddle
 {% endblock %}
 
 {% block body_block %}
-    
+
+
+
+
+<div id="inner-content">
+<form id="AnswerForm" method="post" action="{% url 'riddle' riddle.id %}">
+{% csrf_token %}
+{% for hidden in form.hidden_fields %}
+{{ hidden }}
+{% endfor %}
+{% for field in form.visible_fields %}
+{{ field.errors }}
+{{ field.help_text }}
+{{ field }}
+{% endfor %}
+
+    {% if user.picture %}
+        <img src="{{ u.picture.url }}">
+    {% else %}
+        <img src="{% static 'img/default.png' %}">
+    {% endif %}
+    <h1>Users name goes here</h1>
+
+
+
+ <button type="submit" class="btn btn-outline-dark" name="submit">Submit</button>
+</form>
+</div>
+
+
 {% endblock %}
