@@ -1,7 +1,7 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'css/add_riddle.css' %}">
+<link rel="stylesheet" href="{% static 'css/riddle.css' %}">
 {% block title_block %}
     View Riddle
 {% endblock %}
@@ -10,26 +10,27 @@
 
 
 
-
-<div id="inner-content">
-
-    {% if user.picture %}
+    <div id="userinfo">
+        <div id="userbadge">
+    {% if riddle.author.picture %}
         <img src="{{ riddle.author.picture.url }}">
     {% else %}
         <img src="{% static 'img/default.png' %}">
     {% endif %}
 
     {% if user %}
-    <div class="details">
+
         <a href="{% url 'user' riddle.author %}" id="UsersProfile">{{ riddle.author }}</a>
-        <a  id="riddle">{{ riddle.question }}</a>
-    </div>
+        <h2><a  id="riddle">{{ riddle.question }}</a></h2>
+
+
     {% else %}
     <h3>whoops a user should be here</h3>
     <h3>whoops a Riddle should be here</h3>
     {% endif %}
-
-
+</div>
+</div>
+<div id="inner-content">
 <form id="AnswerForm" method="post" action="{% url 'riddle' riddle.id %}">
 {% csrf_token %}
 {% for hidden in form.hidden_fields %}
