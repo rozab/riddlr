@@ -46,10 +46,10 @@ class RiddleForm(forms.ModelForm):
 
 class AnswerForm(forms.ModelForm):
     answer = forms.CharField(max_length=128,help_text="Answer here.")
-    rating = forms.BooleanField(initial=null,help_text="Like or dislike")
+    rating = forms.BooleanField(help_text="Like or dislike")
 
-    num_tries = forms.IntegerField(widget=forms.HiddenInput(), default=0)
-    correct = forms.BooleanField(widget=forms.HiddenInput(), default=False)
+    num_tries = forms.IntegerField(widget=forms.HiddenInput(), initial=0)
+    correct = forms.BooleanField(widget=forms.HiddenInput(), initial=False)
     previous_answer = forms.CharField(widget=forms.HiddenInput(), max_length=30)
 
     class Meta:

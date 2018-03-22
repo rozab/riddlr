@@ -5,7 +5,7 @@ from django.urls import reverse
 from riddlr.models import Riddle, UserProfile, UserAnswer
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate, login, logout
-from riddlr.forms import RiddleForm, UserForm, UserProfileForm
+from riddlr.forms import RiddleForm, UserForm, UserProfileForm, AnswerForm
 from riddlr import forms
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
