@@ -56,22 +56,22 @@ def add_riddle(request):
 def riddle(request, id):
     useranswer = UserAnswer.objects.get_or_create(riddle=Riddle.objects.get(id=id), user=request.user.userprofile)[0]
     if request.method == 'POST':
-        form = AnswerForm(request.POST, instance=useranswer)
-        form.answer = request.POST['answer']
-        form.num_tries = useranswer.num_tries + 1
-
-        form.correct = False
-        answer_list = useranswer.riddle.get_answers()
-        for a in answer_list:
-            if form.answer == a.strip():
-                form.correct = True
-                break
+        form = AnswerForm(request.POST)
         if form.is_valid():
-            form.save()
+            useranswer.answer = form.data['answer']
+            useranswer.num_tries += 1
+
+            answer_list = useranswer.riddle.get_answers()
+            for a in answer_list:
+                if useranswer.answer == a.strip():
+                    useranswer.correct = True
+                    break
+            print("##################################",answer_list)
+            useranswer.save()
         else:
             print(form.errors)
     else:
-        form = AnswerForm(instance=useranswer)
+        form = AnswerForm()
 
     context_dict = {"riddle": Riddle.objects.get(id=id), 'form':form}
     return render(request, 'riddlr/riddle.html', context_dict)

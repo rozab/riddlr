@@ -12,8 +12,8 @@
     <div id="userinfo">
         <div id="userbadge">
 
-    {% if {{riddle.author}}.picture %}
-        <img src="{{ user.{{riddle.author}}.picture.url }}">
+    {% if riddle.author.picture %}
+        <img src="{{ riddle.author.picture.url }}">
     {% else %}
         <img src="{% static 'img/default.png' %}">
     {% endif %}
@@ -44,12 +44,7 @@
     {{ field }}
 {% endfor %}
 
-<<<<<<< HEAD
-
     {% comment %} <div class="form-field">
-=======
-    <div class="form-field">
->>>>>>> 0abec7dd1240da5ebb7b6f08855f285c686e5e1f
         <input type="text" class="form-control rounded-0" placeholder="Enter your answer here" name="answer" required>
     </div>
 

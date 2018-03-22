@@ -70,6 +70,7 @@ class Riddle(models.Model):
         return json.loads(self.answers)
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         self.set_answers()
         super().save(*args, **kwargs)
 
