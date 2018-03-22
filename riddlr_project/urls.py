@@ -67,7 +67,8 @@ urlpatterns = [
          name='help'),
 
     path('admin/',
-         admin.site.urls),
+         admin.site.urls,
+         name='admin'),
 
     re_path(r'^.*',
             views.error_404,

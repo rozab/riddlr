@@ -52,7 +52,7 @@ def add_riddle(request):
 
     return render(request, 'riddlr/add_riddle.html', {'form': form})
 
-
+@login_required(login_url='/login/')
 def riddle(request, id):
     form = AnswerForm()
     if request.method == 'POST':
@@ -60,7 +60,15 @@ def riddle(request, id):
         if form.is_valid():
             answer = form.save(commit=False)
             answer.user = request.user
+            answer.num_tries += 1
+            answer.previous_answer = answer.answer
+
+            for riddle in user.riddle.getAnswers:
+                if riddle==answer.answer:
+                    answer.correct = True;
+
             answer.save()
+
             return redirect('riddle', riddle.id)
         else:
             print(form.errors)
