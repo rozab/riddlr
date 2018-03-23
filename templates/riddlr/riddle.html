@@ -1,69 +1,56 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'css/riddle.css' %}">
+{% block headcontent %}
+    <link rel="stylesheet" href="{% static 'css/riddle.css' %}">
+{% endblock %}
+
 {% block title_block %}
     View Riddle
 {% endblock %}
 
 {% block body_block %}
+    <div id="left-margin"></div>
 
+    <div id="inner-content">
+        <div id="author">
+            {% if riddle.author.userprofile.picture %}
+                <img src="{{ riddle.author.userprofile.picture.url }}">
+            {% else %}
+                <img src="{% static 'img/default.png' %}">
+            {% endif %}
+            <span><a href="{% url 'user' riddle.author.username %}">{{ riddle.author.username }}</a> asked...</span>
+        </div>
 
-    <div id="userinfo">
-        <div id="userbadge">
+        <div id="question">
+            {{ riddle.question }}
+        </div>
 
-    {% if riddle.author.picture %}
-        <img src="{{ riddle.author.picture.url }}">
-    {% else %}
-        <img src="{% static 'img/default.png' %}">
-    {% endif %}
-
-    {% if user %}
-
-        <a href="{% url 'user' riddle.author %}" id="UsersProfile">{{ riddle.author }}</a>
-        <h2><a  id="riddle">{{ riddle.question }}</a></h2>
-
-
-    {% else %}
-    <h3>whoops a user should be here</h3>
-    <h3>whoops a Riddle should be here</h3>
-    {% endif %}
-</div>
-</div>
-<div id="inner-content">
-<form id="AnswerForm" method="post" action=".">
-{% csrf_token %}
-{% for hidden in form.hidden_fields %}
-{{ hidden }}
-{% endfor %}
-
-{% for field in form.visible_fields %}
-    <p>HERE IS A FIELD</p>
-    {{ field.errors }}
-    {{ field.help_text }}
-    {{ field }}
-{% endfor %}
-
-    {% comment %} <div class="form-field">
-        <input type="text" class="form-control rounded-0" placeholder="Enter your answer here" name="answer" required>
+        {% if user.is_authenticated %}
+            {% if useranswer.correct %}
+                <input type="text" class="form-control rounded-0" placeholder="{{ useranswer.answer }}">
+                <div class="resultbox correct">
+                    <img src="{% static 'img/tick.png' %}">
+                </div>
+            {% else %}
+                <form id="answer-form" method="post" action=".">
+                    {% csrf_token %}
+                    <input type="text" class="form-control rounded-0" placeholder="{{ useranswer.answer }}" name="answer">
+                    {% if useranswer.num_tries > 0 %}
+                        <div class="resultbox incorrect">
+                            <img src="{% static 'img/cross.png' %}">
+                        </div>
+                    {% endif %}
+                    <button type="submit" class="btn btn-outline-dark" name="submit">Submit</button>
+                </form>
+            {% endif %}
+        {% else %}
+                <div id="login-prompt">
+                    <a href="{% url 'login' %}" class="btn btn-outline-dark">Log In</a>
+                    <span> to answer this riddle</span>
+                </div>
+        {% endif%}
     </div>
 
-    <div class="form-field">
-                <p><br>How would you rate this riddle:</p>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="rating" id="+rating" value="True">
-                    <label class="form-check-label" for="+rating">Like</label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" name="rating" id="-rating" value="False">
-                    <label class="form-check-label" for="-rating">Dislike</label>
-                </div>
-
-            </div>
-        <div class="form-field">
-            <button type="submit" class="btn btn-outline-dark" name="submit">Submit</button></div> {% endcomment %}
-</form>
-</div>
-
-
+    <div id="right-margin"></div>
 {% endblock %}

@@ -48,7 +48,7 @@ class UserProfile(models.Model):
 
 class Riddle(models.Model):
     # note there is an auto generated id field
-    question = models.CharField(max_length=150)
+    question = models.CharField(max_length=400)
     date_posted = models.DateField(auto_now_add=True)
     # easy: 0-50
     # medium: 51-100

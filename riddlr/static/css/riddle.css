@@ -1,6 +1,5 @@
 #content {
     display: flex;
-    flex-direction: row;
 }
 
 #left-margin {
@@ -13,32 +12,66 @@
 
 #inner-content {
     flex: 1 1 auto;
+    max-width: 750px;
 }
 
-#inner-content h1 {
-    font-size: 40px;
-    margin-bottom: 30px;
-}
-
-#userinfo {
+#author {
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: start;
 }
 
-#userbadge {
-    flex: 1 1 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin: 30px;
+#author img {
+    height: 70px;
+    width: 70px;
+    flex: initial;
 }
 
-div .form-field {
+#author span {
+    padding-left: 20px;
+    flex: initial;
+}
+
+#question {
+    border: 1px solid rgba(0,0,0,0.5);
+    padding: 40px;
+    font-size: 26px;
+    margin: 16px 0;
+}
+
+#inner-content input, button {
     margin-top: 16px;
 }
 
-.form-check {
-    margin-left: 30px;
+#login-prompt {
+    display: flex;
+    align-items: center;
+    justify-content: start;
 }
 
+#login-prompt span {
+    padding-left: 8px;
+}
+
+.resultbox {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-top: 16px;
+    padding: 16px;
+}
+
+.resultbox img {
+    height: 30px;
+    width: 30px;
+    opacity: 0.5;
+}
+
+.resultbox.correct {
+    background: #D4F6AD;
+}
+
+.resultbox.incorrect {
+    background: #FF5252;
+}

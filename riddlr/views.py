@@ -85,6 +85,7 @@ def riddle(request, id):
         else:
             form = AnswerForm()
         context_dict['form'] = form
+        context_dict['useranswer'] = useranswer
 
     return render(request, 'riddlr/riddle.html', context_dict)
 
