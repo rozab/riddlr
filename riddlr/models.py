@@ -38,18 +38,32 @@ class UserProfile(models.Model):
     def update_fields(self):
         useranswers = self.useranswer_set.all()
 
-        total = 0
         for ua in useranswers:
-            total += ua.rating
-        self.score = total
+            points = 0
+            if ua.correct:
+                if ua.num_tries == 1:
+                    points = 10
+                elif ua.num_tries <=3:
+                    points = 5
+                else:
+                    points = 1
+            if ua.riddle.difficulty_pt == "hard":
+                points *= 3
+            elif ua.riddle.difficulty_pt == "medium":
+                points *= 2
+            self.score += points
 
         total = 0
         for r in self.riddle_set.all():
             total += r.rating
+        self.karma = total
         
-        correct_answers = useranswers.filter(correct=True).filter(num_tries=1).count()
-        if useranswers.count() > 0:
-            self.guess_ratio = (correct_answers/useranswers.count())*100
+        total_num_tries = 0
+        for ua in useranswers:
+            total_num_tries += ua.num_tries
+
+        if total_num_tries > 0:
+            self.guess_ratio = (useranswers.filter(correct=True).count() / total_num_tries)*100
 
 
     def save(self, *args, **kwargs):
@@ -137,4 +151,4 @@ class UserAnswer(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.riddle.save()
-        self.riddle.author.save()
+        self.user.save()
