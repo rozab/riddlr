@@ -22,12 +22,8 @@ Home
                     {% for riddle in top_riddles %}
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
-                                {{ riddle.question }} <br />
+                                {{ riddle.question }}
                             </a>
-                            <br />
-                            Date Posted: {{ riddle.date_posted }}<br />
-                            Difficulty: {{ riddle.difficulty }}<br />
-                            Rating: {{ riddle.rating }}<br />
                         </li>
                     {% endfor %}
                 </ul>
@@ -48,12 +44,8 @@ Home
                     {% for riddle in recent_riddles %}
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
-                                {{ riddle.question }} <br />
+                                {{ riddle.question }}
                             </a>
-                            <br />
-                            Date Posted: {{ riddle.date_posted }}<br />
-                            Difficulty: {{ riddle.difficulty }}<br />
-                            Rating: {{ riddle.rating }}<br />
                         </li>
                     {% endfor %}
                 </ul>

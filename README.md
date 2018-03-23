@@ -8,4 +8,4 @@
 - django-filter 1.1.0
 
 ## Setup
-Run `python manage.py loaddata populate.json`. 
+Run `python manage.py migrate --run-syncdb` and then `python manage.py loaddata populate.json`. 
