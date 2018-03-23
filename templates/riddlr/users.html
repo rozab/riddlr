@@ -16,10 +16,17 @@ Top Riddlrs
     <div id="inner-content">
         <div id="titlebar">
             <h1>Top Riddlrs</h1>
-            <input class="form-control" type="search" placeholder="Search">
+            <form action="" method="get">
+                <div class="input-group">
+                    <input class="form-control" type="search" placeholder="Search" name="user__username">
+                    <div class="input-group-btn">
+                        <button class="btn btn-outline-dark" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
         </div>
         <ul id="results">
-            {% for u in users %}
+            {% for u in filter.qs %}
                 <li>
                     {% if u.picture %}
                         <img src="{{ u.picture.url }}">

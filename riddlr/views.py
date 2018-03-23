@@ -9,6 +9,7 @@ from riddlr.forms import RiddleForm, UserForm, UserProfileForm, AnswerForm
 from riddlr import forms
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
+from riddlr.filters import UserProfileFilter
 
 
 def home(request):
@@ -141,8 +142,10 @@ def user(request, username):
 
 
 def users(request):
-    context_dict = {'users': UserProfile.objects.order_by('-score')}
-    return render(request, 'riddlr/users.html', context_dict)
+    up_list = UserProfile.objects.order_by('-score')
+    up_filter = UserProfileFilter(request.GET, queryset=up_list)
+
+    return render(request, 'riddlr/users.html', {'filter':up_filter})
 
 
 def user_login(request):
