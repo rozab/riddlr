@@ -22,6 +22,7 @@ class AnswerForm(forms.Form):
         model = UserAnswer
         fields = ('answer',)
 
+
 class UserForm(forms.ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
 

@@ -69,6 +69,11 @@ class Riddle(models.Model):
 
         self.num_answers = useranswers.count()
 
+        total = 0
+        for ua in useranswers:
+            total += ua.rating
+        self.rating = total
+
         # find average number of tries
         # incorrect answer == +10 tries
         total_tries = 0
@@ -106,6 +111,9 @@ class UserAnswer(models.Model):
     num_tries = models.IntegerField(default=0)
     correct = models.BooleanField(default=False)
     answer = models.CharField(max_length=30, default="")
+
+    # is either 1 or -1
+    rating = models.IntegerField(default=0)
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)

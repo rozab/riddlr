@@ -90,6 +90,24 @@ def riddle(request, id):
 
     return render(request, 'riddlr/riddle.html', context_dict)
 
+def upvote(request, id):
+    useranswer = UserAnswer.objects.get(id=id)
+    if useranswer.rating == 1:
+        useranswer.rating = 0
+    else:
+        useranswer.rating = 1
+    useranswer.save()
+    return redirect('riddle', useranswer.riddle.id)
+
+def downvote(request, id):
+    useranswer = UserAnswer.objects.get(id=id)
+    if useranswer.rating == -1:
+        useranswer.rating = 0
+    else:
+        useranswer.rating = -1
+    useranswer.save()
+    return redirect('riddle', useranswer.riddle.id)
+
 
 def user(request, username):
     context_dict = {}

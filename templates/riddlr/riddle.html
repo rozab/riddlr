@@ -12,6 +12,25 @@
 {% block body_block %}
     <div id="left-margin"></div>
 
+    <div id="vote-container">
+        <div></div>
+        <a href="{% url 'upvote' useranswer.id %}">
+            {% if useranswer.rating == 1 %}
+                <img src="{% static 'img/green_up_arrow.png' %}">
+            {% else %}
+                <img src="{% static 'img/up_arrow.png' %}">
+            {% endif %}
+        </a>
+        <span>{{ riddle.rating }}</span>
+        <a href="{% url 'downvote' useranswer.id %}">
+            {% if useranswer.rating == -1 %}
+                <img src="{% static 'img/red_down_arrow.png' %}">
+            {% else %}
+                <img src="{% static 'img/down_arrow.png' %}">
+            {% endif %}
+        </a>
+    </div>
+
     <div id="inner-content">
         <div id="author">
             {% if riddle.author.userprofile.picture %}
@@ -57,7 +76,7 @@
             <p>
                 Asked by {{ riddle.author }} on {{ riddle.date_posted|date:"SHORT_DATE_FORMAT" }}<br>
                 {{ riddle.num_answers }} answer{{ riddle.num_answers|pluralize }}<br>
-                Difficulty rating: 
+                Difficulty rating: {{ riddle.difficulty_pt|title }}
             </p>
         </div>
     </div>

@@ -66,6 +66,14 @@ urlpatterns = [
          views.help,
          name='help'),
 
+    path('upvote/<id>/',
+         views.upvote,
+         name='upvote'),
+
+    path('downvote/<id>/',
+         views.downvote,
+         name='downvote'),
+
     path('admin/',
          admin.site.urls,
          name='admin'),

@@ -10,6 +10,31 @@
     flex: 2 1 0;
 }
 
+#vote-container {
+    flex: 0 0 auto;
+    justify-self: end;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 20px;
+}
+
+#vote-container div {
+    flex: initial;
+    height: 157px;
+}
+
+#vote-container span {
+    padding: 4px;
+    font-size: 20px;
+}
+
+#vote-container img {
+    height: 40px;
+    width: 40px;
+}
+
+
 #inner-content {
     flex: 1 1 auto;
     max-width: 750px;
