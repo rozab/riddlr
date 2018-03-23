@@ -81,8 +81,9 @@ class Riddle(models.Model):
             total_tries += ua.num_tries
             if not ua.correct:
                 total_tries += 10
-        mean = total_tries / self.num_answers
-        self.difficulty = mean * 20
+        if self.num_answers >0 :
+            mean = total_tries / self.num_answers
+            self.difficulty = mean * 20
 
         if self.difficulty < 50:
             self.difficulty_pt = "easy"
