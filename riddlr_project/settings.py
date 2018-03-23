@@ -26,9 +26,9 @@ MEDIA_DIR = os.path.join(BASE_DIR, 'media')
 SECRET_KEY = '_cfyp1g9+xj3dsl=fcnrory$pepb4@6=q)hmj5(n2)u@h&_#2!'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['http://HerbertMarc.pythonanywhere.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -125,6 +125,8 @@ USE_TZ = True
 
 
 STATICFILES_DIRS = [STATIC_DIR, ]
+
+STATIC_ROOT = 'static/'
 STATIC_URL = '/static/'
 
 # Media files
