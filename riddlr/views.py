@@ -79,9 +79,10 @@ def upvote(request, id):
     useranswer = UserAnswer.objects.get(id=id)
     if useranswer.rating == 1:
         useranswer.rating = 0
-    else:
+    elif:
         useranswer.rating = 1
     useranswer.save()
+    useranswer.riddle.author.userprofile.save()
     return redirect('riddle', useranswer.riddle.id)
 
 def downvote(request, id):

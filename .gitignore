@@ -6,6 +6,7 @@ test_utils.py
 .vscode/
 .idea/
 media/
+riddlr_project/settings.py
 
 ### and githubs recommended python .gitignore
 
