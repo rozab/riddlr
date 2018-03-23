@@ -47,7 +47,7 @@ class UserProfile(models.Model):
         for r in self.riddle_set.all():
             total += r.rating
         
-        correct_answers = useranswers.filter(correct=True).count()
+        correct_answers = useranswers.filter(correct=True).filter(num_tries=1).count()
         if useranswers.count() > 0:
             self.guess_ratio = (correct_answers/useranswers.count())*100
 
