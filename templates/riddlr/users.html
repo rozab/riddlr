@@ -25,6 +25,7 @@ Top Riddlrs
                 </div>
             </form>
         </div>
+        {% if filter.qs %}
         <ul id="results">
             {% for u in filter.qs %}
                 <li>
@@ -49,6 +50,10 @@ Top Riddlrs
                 </li>
             {% endfor %}
         </ul>
+        {% else %}
+        <br><br>
+        <strong>Nothing here :(</strong>
+        {% endif %}
     </div>
 
     <div id="right-margin"></div>

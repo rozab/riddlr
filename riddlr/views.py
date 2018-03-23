@@ -9,7 +9,7 @@ from riddlr.forms import RiddleForm, UserForm, UserProfileForm, AnswerForm
 from riddlr import forms
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import ObjectDoesNotExist
-from riddlr.filters import UserProfileFilter
+from riddlr.filters import UserProfileFilter,RiddleFilter
 
 
 def home(request):
@@ -29,26 +29,10 @@ def about(request):
 
 
 def riddles(request):
-    context_dict = {}
-    context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:]
-    context_dict['hard_riddles'] = Riddle.objects.filter(difficulty__gt=100)
-    context_dict['medium_riddles'] = Riddle.objects.filter(
-        difficulty__gt=50).filter(difficulty__lt=101)
-    context_dict['easy_riddles'] = Riddle.objects.filter(difficulty__lt=51)
+    riddle_list = Riddle.objects.order_by('-rating')
+    riddle_filter = RiddleFilter(request.GET, queryset=riddle_list)
 
-    if request.method == 'GET':
-        selection = request.GET.get('sort', None)
-        if selection == "riddle.rating":
-            context_dict['top_riddles'] = Riddle.objects.order_by('-rating')[:]
-            render(request, 'riddlr/riddles.html', context_dict)
-        elif selection == "riddle.difficulty":
-            context_dict['top_riddles'] = Riddle.objects.order_by('-difficulty')[:]
-            render(request, 'riddlr/riddles.html', context_dict)
-        else:
-            context_dict['top_riddles'] = Riddle.objects.order_by('-date_posted')[:]
-            render(request, 'riddlr/riddles.html', context_dict)
-
-    return render(request, 'riddlr/riddles.html', context_dict)
+    return render(request, 'riddlr/riddles.html', {'filter':riddle_filter})
 
 
 @login_required(login_url='/login/')

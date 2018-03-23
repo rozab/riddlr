@@ -1,51 +1,54 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
-<link rel="stylesheet" href="{% static 'css/home.css' %}">
+{% block headcontent %}
+    <link rel="stylesheet" href="{% static 'css/riddles.css' %}">
+{% endblock %}
+
 {% block title_block %}
-Top Riddles
+    Top Riddles
 {% endblock %}
 
 {% block body_block %}
+<div id="left-margin"></div>
 
-<div id="contentbox">
-
-    <div class="card contentpanel">
-        <div class="card-header">
-            Top Riddles
-            <form action="" method="GET" id="selection-form">
-            {% csrf_token %}
-                <select id="sort">
-                    <option value="riddle.difficulty">Filter by difficulty</option>
-                    <option value="riddle.date_posted">Filter by date</option>
-                    <option value="riddle.rating">Filter by rating</option>#  javascript to sort riddles?
+    <div id="inner-content">
+        <div id="titlebar">
+            <h1>Top Riddles</h1>
+            <form action="" method="get">
+                <select class="form-control" onchange="form.submit()" name="difficulty_pt">
+                    <option>Select a difficulty...</option>
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard">Hard</option>
                 </select>
-            <input type="button" value="Update" id="selection-button">
             </form>
-            <span><a href="{% url 'riddles' %}">See all</a></span>
-
-
         </div>
-        <div class="card-block">
-            {% if riddles %}
-                <ul>
-                    {% for riddle in riddles %}
-                        <li>
-                            <a href="{% url 'riddle' riddle.id %}">
-                                {{ riddle.question }} <br />
-                            </a>
-                            <br />
-                            Date Posted:{{ riddle.date_posted }}<br />
-                            Difficulty: {{ riddle.difficulty }}<br />
-                            Rating: {{ riddle.rating }}<br />
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <strong>There are no riddles present :(</strong>
-            {% endif %}
-        </div>
+        {% if filter.qs %}
+        <ul id="results">
+            {% for r in filter.qs %}
+                <li>
+                    <div class="details">
+                            <a href="{% url 'riddle' r.id %}">{{ r.question }}</a>
+                        <table>
+                            <tr>
+                                <td>Rating: {{ r.rating }}</td>
+                                <td>Difficulty: {{ r.difficulty_pt }}</td>
+                            </tr>
+                            <tr>
+                                <td>Answers: {{ r.num_answers }}</td>
+                                <td>Posted {{ r.date_posted|date:"SHORT_DATE_FORMAT" }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <br><br>
+        <strong>Nothing here :(</strong>
+        {% endif %}
     </div>
-</div>
 
+    <div id="right-margin"></div>
 {% endblock %}
