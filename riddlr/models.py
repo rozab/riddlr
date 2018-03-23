@@ -137,3 +137,4 @@ class UserAnswer(models.Model):
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
         self.riddle.save()
+        self.riddle.author.save()
