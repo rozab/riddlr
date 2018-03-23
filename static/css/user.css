@@ -1,0 +1,56 @@
+#content {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+}
+
+#userinfo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#userbadge {
+    flex: 1 1 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 30px;
+}
+
+#userbadge img {
+    flex: initial;
+    height: 200px;
+    width: 200px;
+}
+
+#username {
+    flex: initial;
+    margin-left: 30px;
+}
+
+#username h1 {
+    margin-bottom: 10px;
+}
+
+#userdetails {
+    flex: 1 1 0;
+    border: 1px solid rgba(0,0,0,0.5);
+    margin: 30px;
+}
+
+/* for flexy purposes */
+#userdetails > div {
+    font-size: 20px;
+    padding: 30px;
+}
+
+#listpanels {
+    display: flex;
+    flex-direction: row;
+}
+
+.contentpanel {
+    flex: 1 1 0;
+    margin: 30px;
+}

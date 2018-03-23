@@ -1,0 +1,23 @@
+#content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+
+#inner-content {
+    flex: 1 1 auto;
+    width: 450px;
+    margin-right: 50px;
+}
+
+#content img {
+    flex: initial;
+    margin-left: 50px;
+    height: 300px;
+}
+
+.margin {
+    margin: 0px;
+    flex: 2 1 0;
+}
