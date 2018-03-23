@@ -18,9 +18,9 @@
             <form action="" method="get">
                 <select class="form-control" onchange="form.submit()" name="difficulty_pt">
                     <option>Select a difficulty...</option>
-                    <option value="easy">Easy</option>
-                    <option value="medium">Medium</option>
-                    <option value="hard">Hard</option>
+                    <option value="easy" {% if request.GET.difficulty_pt == "easy" %}selected{% endif %}>Easy</option>
+                    <option value="medium" {% if request.GET.difficulty_pt == "medium" %}selected{% endif %}>Medium</option>
+                    <option value="hard" {% if request.GET.difficulty_pt == "hard" %}selected{% endif %}>Hard</option>
                 </select>
             </form>
         </div>
