@@ -177,6 +177,7 @@ def register(request):
                 profile.picture = request.FILES['picture']
             profile.save()
             registered = True
+            return redirect('login')
         else:
             print(user_form.errors, profile_form.errors)
     else:

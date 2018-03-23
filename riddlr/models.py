@@ -48,7 +48,8 @@ class UserProfile(models.Model):
             total += r.rating
         
         correct_answers = useranswers.filter(correct=True).count()
-        self.guess_ratio = (correct_answers/useranswers.count())*100
+        if useranswers.count() > 0:
+            self.guess_ratio = (correct_answers/useranswers.count())*100
 
 
     def save(self, *args, **kwargs):
