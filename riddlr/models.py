@@ -54,6 +54,7 @@ class Riddle(models.Model):
     # medium: 51-100
     # hard: 101-150
     difficulty = models.IntegerField(default=75)
+    difficulty_pt = models.CharField(max_length=10,default="medium")
     rating = models.IntegerField(default=0)
     num_answers = models.IntegerField(default=0)
 
@@ -77,7 +78,19 @@ class Riddle(models.Model):
                 total_tries += 10
         mean = total_tries / self.num_answers
         self.difficulty = mean * 20
-        self.save()
+
+        if self.difficulty < 50:
+            self.difficulty_pt = "easy"
+        elif self.difficulty >= 50 and self.difficulty < 100:
+            self.difficulty_pt = "medium"
+        else:
+            self.difficulty_pt = "hard"
+
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
+        self.update_fields()
+        super().save(*args, **kwargs)
 
     class Meta:
         verbose_name_plural = 'riddles'
@@ -96,4 +109,4 @@ class UserAnswer(models.Model):
 
     def save(self, *args, **kwargs):
         super().save(*args, **kwargs)
-        self.riddle.update_fields()
+        self.riddle.save()

@@ -75,7 +75,7 @@ def riddle(request, id):
                 useranswer.answer = form.data['answer']
                 useranswer.num_tries += 1
 
-                answer_list = useranswer.riddle.answers.split()
+                answer_list = useranswer.riddle.answers.split(",")
                 for a in answer_list:
                     if useranswer.answer == a.strip():
                         useranswer.correct = True

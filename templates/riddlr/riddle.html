@@ -28,17 +28,19 @@
 
         {% if user.is_authenticated %}
             {% if useranswer.correct %}
-                <input type="text" class="form-control rounded-0" placeholder="{{ useranswer.answer }}">
+                <input type="text" class="form-control rounded-0" placeholder="{{ useranswer.answer }}" disabled>
                 <div class="resultbox correct">
                     <img src="{% static 'img/tick.png' %}">
+                    <span>Correct! You took {{ useranswer.num_tries }} tr{{ useranswer.num_tries|pluralize:"y,ies" }}.</span>
                 </div>
             {% else %}
                 <form id="answer-form" method="post" action=".">
                     {% csrf_token %}
-                    <input type="text" class="form-control rounded-0" placeholder="{{ useranswer.answer }}" name="answer">
+                    <input type="text" class="form-control rounded-0" placeholder="{% firstof useranswer.answer "answer" %}" name="answer" required>
                     {% if useranswer.num_tries > 0 %}
                         <div class="resultbox incorrect">
                             <img src="{% static 'img/cross.png' %}">
+                            <span>Incorrect! You have used {{ useranswer.num_tries }} tr{{ useranswer.num_tries|pluralize:"y,ies" }}.</span>
                         </div>
                     {% endif %}
                     <button type="submit" class="btn btn-outline-dark" name="submit">Submit</button>
@@ -50,6 +52,14 @@
                     <span> to answer this riddle</span>
                 </div>
         {% endif%}
+
+        <div id="riddle-info">
+            <p>
+                Asked by {{ riddle.author }} on {{ riddle.date_posted|date:"SHORT_DATE_FORMAT" }}<br>
+                {{ riddle.num_answers }} answer{{ riddle.num_answers|pluralize }}<br>
+                Difficulty rating: 
+            </p>
+        </div>
     </div>
 
     <div id="right-margin"></div>

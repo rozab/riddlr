@@ -23,13 +23,14 @@
 }
 
 #author img {
-    height: 70px;
-    width: 70px;
+    height: 100px;
+    width: 100px;
+    margin: 20px;
     flex: initial;
 }
 
 #author span {
-    padding-left: 20px;
+    font-size: 26px;
     flex: initial;
 }
 
@@ -62,16 +63,24 @@
     padding: 16px;
 }
 
-.resultbox img {
-    height: 30px;
-    width: 30px;
-    opacity: 0.5;
-}
-
 .resultbox.correct {
     background: #D4F6AD;
 }
 
 .resultbox.incorrect {
-    background: #FF5252;
+    background: #FF7777;
+}
+
+.resultbox img {
+    height: 40px;
+    width: 40px;
+    opacity: 0.4;
+}
+
+.resultbox span {
+    padding-left: 16px;
+}
+
+#riddle-info {
+    margin-top: 16px;
 }
