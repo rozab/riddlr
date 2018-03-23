@@ -62,7 +62,7 @@ def riddle(request, id):
 
                 answer_list = useranswer.riddle.answers.split(",")
                 for a in answer_list:
-                    if useranswer.answer == a.strip():
+                    if useranswer.answer.lower() == a.strip().lower():
                         useranswer.correct = True
                         break
                 useranswer.save()
