@@ -54,7 +54,7 @@ class UserProfile(models.Model):
     def save(self, *args, **kwargs):
         # saving twice isnt ideal but cant get proper img path otherwise
         super().save(*args, **kwargs)
-        update_fields()
+        self.update_fields()
         self.crop_picture()
         super().save(*args, **kwargs)
         
