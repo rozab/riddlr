@@ -5,10 +5,13 @@ $("selection-button").click(function(e) {
         type: "GET",
         url: url,
         data: {
-            id: $('#sort').val()};,
+            id: $('#sort').val();
+        },
         success: function(result) {
-            alert('ok')};
+            alert('ok');
+        },
         error: function(result) {
-            alert('error')};
+            alert('error');
+        }
     });
 });
