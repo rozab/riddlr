@@ -79,7 +79,7 @@ def upvote(request, id):
     useranswer = UserAnswer.objects.get(id=id)
     if useranswer.rating == 1:
         useranswer.rating = 0
-    elif:
+    else:
         useranswer.rating = 1
     useranswer.save()
     useranswer.riddle.author.userprofile.save()
