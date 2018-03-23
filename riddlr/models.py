@@ -35,9 +35,26 @@ class UserProfile(models.Model):
             return
 
 
+    def update_fields(self):
+        useranswers = self.useranswer_set.all()
+
+        total = 0
+        for ua in useranswers:
+            total += ua.rating
+        self.score = total
+
+        total = 0
+        for r in self.riddle_set.all():
+            total += r.rating
+        
+        correct_answers = useranswers.filter(correct=True).count()
+        self.guess_ratio = (correct_answers/useranswers.count())*100
+
+
     def save(self, *args, **kwargs):
         # saving twice isnt ideal but cant get proper img path otherwise
         super().save(*args, **kwargs)
+        update_fields()
         self.crop_picture()
         super().save(*args, **kwargs)
         
