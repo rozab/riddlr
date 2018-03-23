@@ -11,7 +11,7 @@
 
 {% block body_block %}
     <div id="left-margin"></div>
-
+    {% if user.is_authenticated %}
     <div id="vote-container">
         <div></div>
         <a href="{% url 'upvote' useranswer.id %}">
@@ -30,6 +30,7 @@
             {% endif %}
         </a>
     </div>
+    {% endif %}
 
     <div id="inner-content">
         <div id="author">
