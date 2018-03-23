@@ -65,27 +65,28 @@ def add_riddle(request):
 
     return render(request, 'riddlr/add_riddle.html', {'form': form})
 
-@login_required(login_url='/login/')
 def riddle(request, id):
-    useranswer = UserAnswer.objects.get_or_create(riddle=Riddle.objects.get(id=id), user=request.user.userprofile)[0]
-    if request.method == 'POST':
-        form = AnswerForm(request.POST)
-        if form.is_valid():
-            useranswer.answer = form.data['answer']
-            useranswer.num_tries += 1
+    context_dict = {'riddle': Riddle.objects.get(id=id)}
+    if request.user.is_authenticated:
+        useranswer = UserAnswer.objects.get_or_create(riddle=Riddle.objects.get(id=id), user=request.user.userprofile)[0]
+        if request.method == 'POST':
+            form = AnswerForm(request.POST)
+            if form.is_valid():
+                useranswer.answer = form.data['answer']
+                useranswer.num_tries += 1
 
-            answer_list = useranswer.riddle.answers.split()
-            for a in answer_list:
-                if useranswer.answer == a.strip():
-                    useranswer.correct = True
-                    break
-            useranswer.save()
+                answer_list = useranswer.riddle.answers.split()
+                for a in answer_list:
+                    if useranswer.answer == a.strip():
+                        useranswer.correct = True
+                        break
+                useranswer.save()
+            else:
+                print(form.errors)
         else:
-            print(form.errors)
-    else:
-        form = AnswerForm()
+            form = AnswerForm()
+        context_dict['form'] = form
 
-    context_dict = {"riddle": Riddle.objects.get(id=id), 'form':form}
     return render(request, 'riddlr/riddle.html', context_dict)
 
 
