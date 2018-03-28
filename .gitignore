@@ -1,5 +1,6 @@
 ### Our stuff
 *.pyc
+*.bak
 db.sqlite3
 decorators.py
 test_utils.py
