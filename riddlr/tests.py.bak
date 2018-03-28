@@ -7,7 +7,7 @@ from riddlr.models import Riddle, UserProfile
 
 class CreateRiddle(TestCase):
 	def test_for_user_creation(self):
-		guy = UserProfile(user=('username','james@james.com','jsjsjs'))
+		guy = UserProfile(user='james')
 		guy.save()
 		self.assertEqual((guy.karma==0), true)
 
