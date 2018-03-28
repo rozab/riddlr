@@ -6,7 +6,5 @@ register = template.Library()
 def guess_ratio(percentage):
     if percentage is None:
         return "N/A"
-    elif percentage == -1:
-        return "∞"
     else:
         return str(int(round(percentage)))+"%"
