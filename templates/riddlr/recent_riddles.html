@@ -1,33 +1,57 @@
 {% extends 'riddlr/base.html' %}
 
 {% load staticfiles %}
+{% block headcontent %}
+    <link rel="stylesheet" href="{% static 'css/riddles.css' %}">
+{% endblock %}
+
 {% block title_block %}
-Recent Riddles
+    Recent Riddles
 {% endblock %}
 
 {% block body_block %}
-<div id="contentbox">
+<div id="left-margin"></div>
 
-        <div class="card contentpanel">
-        <div class="card-header">
-            Recent Riddles
-
+    <div id="inner-content">
+        <div id="titlebar">
+            <h1>Recent Riddles</h1>
+            <form action="" method="get">
+                <div class="form-group form-inline">
+                    <label for="difficulty">Filter by: </label>
+                    <select id="difficulty" class="form-control rounded-0" onchange="form.submit()" name="difficulty_pt">
+                        <option>Select a difficulty...</option>
+                        <option value="easy" {% if request.GET.difficulty_pt == "easy" %}selected{% endif %}>Easy</option>
+                        <option value="medium" {% if request.GET.difficulty_pt == "medium" %}selected{% endif %}>Medium</option>
+                        <option value="hard" {% if request.GET.difficulty_pt == "hard" %}selected{% endif %}>Hard</option>
+                    </select>
+                </div>
+            </form>
         </div>
-        <div class="card-block">
-            {% if recent_riddles %}
-                <ul>
-                    {% for riddle in recent_riddles %}
-                        <li>
-                            <a href="{% url 'riddle' riddle.id %}">
-                                {{ riddle.question }}
-                            </a>
-                        </li>
-                    {% endfor %}
-                </ul>
-            {% else %}
-                <strong>There are no riddles present :(</strong>
-            {% endif %}
-        </div>
+        {% if filter.qs %}
+        <ul id="results">
+            {% for r in filter.qs %}
+                <li>
+                    <div class="details">
+                            <a href="{% url 'riddle' r.id %}">{{ r.question }}</a>
+                        <table>
+                            <tr>
+                                <td>Rating: {{ r.rating }}</td>
+                                <td>Difficulty: {{ r.difficulty_pt|title }}</td>
+                            </tr>
+                            <tr>
+                                <td>Answers: {{ r.num_answers }}</td>
+                                <td>Posted {{ r.date_posted|date:"SHORT_DATE_FORMAT" }}</td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+        {% else %}
+        <br><br>
+        <strong>Nothing here :(</strong>
+        {% endif %}
     </div>
-</div>
-{%  endblock %}
+
+    <div id="right-margin"></div>
+{% endblock %}

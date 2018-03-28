@@ -30,9 +30,13 @@ urlpatterns = [
          views.about,
          name='about'),
 
-    path('riddles/',
-         views.riddles,
-         name='riddles'),
+    path('top_riddles/',
+         views.top_riddles,
+         name='top_riddles'),
+
+    path('recent_riddles/',
+         views.recent_riddles,
+         name='recent_riddles'),
 
     path('add_riddle/',
          views.add_riddle,

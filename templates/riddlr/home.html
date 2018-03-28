@@ -14,7 +14,7 @@ Home
     <div class="card contentpanel rounded-0">
         <div class="card-header">
             Top Riddles
-            <span><a href="{% url 'riddles' %}">See all</a></span>
+            <span><a href="{% url 'top_riddles' %}">See all</a></span>
         </div>
         <div class="card-block">
             {% if top_riddles %}
@@ -36,7 +36,7 @@ Home
     <div class="card contentpanel rounded-0">
         <div class="card-header">
             Recent Riddles
-            <span><a href="{% url 'riddles' %}">See all</a></span>
+            <span><a href="{% url 'recent_riddles' %}">See all</a></span>
         </div>
         <div class="card-block">
             {% if recent_riddles %}

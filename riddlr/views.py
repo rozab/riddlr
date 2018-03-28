@@ -28,11 +28,17 @@ def about(request):
     return render(request, 'riddlr/about.html', context_dict)
 
 
-def riddles(request):
+def top_riddles(request):
     riddle_list = Riddle.objects.order_by('-rating')
     riddle_filter = RiddleFilter(request.GET, queryset=riddle_list)
 
-    return render(request, 'riddlr/riddles.html', {'filter':riddle_filter})
+    return render(request, 'riddlr/top_riddles.html', {'filter':riddle_filter})
+
+def recent_riddles(request):
+    riddle_list = Riddle.objects.order_by('-date_posted')
+    riddle_filter = RiddleFilter(request.GET, queryset=riddle_list)
+
+    return render(request, 'riddlr/top_riddles.html', {'filter':riddle_filter})
 
 
 @login_required(login_url='/login/')

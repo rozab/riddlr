@@ -18,13 +18,17 @@
 
 #titlebar {
     display: flex;
-    align-items: center;
+    align-items: end;
 }
 
 #titlebar h1 {
     flex: 1 1 0;
     font-size: 40px;
-    margin-bottom: 10px;
+    margin: 0;
+}
+
+#titlebar .form-group {
+    margin: 0;
 }
 
 #difficulty {
