@@ -38,6 +38,7 @@ class UserProfile(models.Model):
     def update_fields(self):
         useranswers = self.useranswer_set.all()
 
+        self.score = 0
         for ua in useranswers:
             points = 0
             if ua.correct:
@@ -51,7 +52,7 @@ class UserProfile(models.Model):
                 points *= 3
             elif ua.riddle.difficulty_pt == "medium":
                 points *= 2
-            self.score = points
+            self.score += points
 
         total = 0
         for r in self.riddle_set.all():
