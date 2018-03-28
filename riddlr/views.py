@@ -18,6 +18,14 @@ def home(request):
     context_dict['recent_riddles'] = Riddle.objects.order_by(
         '-date_posted')[:5]
     context_dict['top_riddlrs'] = UserProfile.objects.order_by('-score')[:5]
+    if request.user.is_authenticated:
+        solved_answers = User.objects.get(username=request.user).userprofile.useranswer_set.filter(
+            correct=True).order_by('-riddle__date_posted')
+        riddles = []
+        for answer in solved_answers:
+            riddles.append(answer.riddle)
+        context_dict['solved_answers'] = riddles
+    
     return render(request, 'riddlr/home.html', context_dict)
 
 def error_404(request):
@@ -128,6 +136,7 @@ def user(request, username):
     context_dict['recent_riddles'] = riddles.order_by('-date_posted')
     context_dict['solved_answers'] = userprofile.useranswer_set.filter(
         correct=True).order_by('-riddle__date_posted')
+    print (context_dict['solved_answers'])
 
     return render(request, 'riddlr/user.html', context_dict)
 

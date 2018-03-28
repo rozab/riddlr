@@ -20,11 +20,21 @@ Home
             {% if top_riddles %}
                 <ul>
                     {% for riddle in top_riddles %}
+			{% if user.is_authenticated %}
+			{% if riddle not in solved_answers %}
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
                                 {{ riddle.question }}
                             </a>
                         </li>
+			{% endif %}
+			{% else %}
+			<li>
+                            <a href="{% url 'riddle' riddle.id %}">
+                                {{ riddle.question }}
+                            </a>
+                        </li>
+			{% endif %}
                     {% endfor %}
                 </ul>
             {% else %}
@@ -42,11 +52,21 @@ Home
             {% if recent_riddles %}
                 <ul>
                     {% for riddle in recent_riddles %}
+			{% if user.is_authenticated %}
+			{% if riddle not in solved_answers %}
                         <li>
                             <a href="{% url 'riddle' riddle.id %}">
                                 {{ riddle.question }}
                             </a>
                         </li>
+			{% endif %}
+			{% else %}
+			<li>
+                            <a href="{% url 'riddle' riddle.id %}">
+                                {{ riddle.question }}
+                            </a>
+                        </li>
+			{% endif %}
                     {% endfor %}
                 </ul>
             {% else %}
